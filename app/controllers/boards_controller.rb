@@ -8,7 +8,7 @@ class BoardsController < ApplicationController
     current_user.toggle_follow!(@board)
     #redirect_to board_path(@board)
     respond_to do |format|
-      format.js { render :action => 'toggle_follow' }
+      format.js { render :action => '../puns/toggle_follow', :locals => {:board => @board} }
     end
   end
 

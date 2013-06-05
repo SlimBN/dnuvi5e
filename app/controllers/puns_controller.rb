@@ -14,6 +14,7 @@ class PunsController < ApplicationController
   # GET /puns/1.json
   def show
     @pun = Pun.find(params[:id])
+    @board = @pun.board
 
     respond_to do |format|
       format.html # show.html.erb
