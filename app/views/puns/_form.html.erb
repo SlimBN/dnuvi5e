@@ -1,0 +1,64 @@
+<%= form_for(@pun) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </div>
+  <%= f.text_field :remote_image_url %>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.label :original_user_id %><br />
+    <%= f.hidden_field :original_user_id, :value => current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.label :board_id %><br />
+    <%= f.number_field :board_id %>
+  </div>
+  <div class="field">
+    <%= f.label :original_board_id %><br />
+    <%= f.number_field :original_board_id %>
+  </div>
+  <div class="field">
+    <%= f.label :original_punaise_id %><br />
+    <%= f.number_field :original_punaise_id %>
+  </div>
+  <div class="field">
+    <%= f.label :websource %><br />
+    <%= f.text_field :websource %>
+  </div>
+  <div class="field">
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :is_product %><br />
+    <%= f.check_box :is_product %>
+  </div>
+  <div class="field">
+    Dans :<br />
+    <select id="pun_board_id" name="pun[board_id]">
+      <% Currency.order("name ASC").each do |currency|  %>
+        <option value="<%= currency.id %>"><%= currency.name %> </option>
+      <% end %>
+    </select>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

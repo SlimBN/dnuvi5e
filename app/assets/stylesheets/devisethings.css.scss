@@ -1,0 +1,136 @@
+@import "mixins";
+@import "colors";
+
+#register {
+	width: 700px;
+	margin: 0 auto;
+	margin-top: 40px;
+
+	text-align: center;
+
+	.createaccount {
+		font-weight: 400;
+		font-size: 42px;
+		font-family: timesnewroman;
+
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+
+	.forms {
+		width: 680px;
+		border-radius: 3px;
+		margin-bottom: 5px;
+		margin-top: 20px;
+		padding: 20px;
+
+		background-color: #FFFFFF;
+
+		text-align: left;
+
+		box-shadow: 0 0 3px #A7AAAA;
+
+		.left {
+			display: inline-block;
+			vertical-align: top;
+
+			width: 250px;
+		}
+
+		.right {
+			display: inline-block;
+			vertical-align: top;
+
+			padding-left: 10px;
+
+			width: 400px;
+
+			border-left: 1px solid #A7AAAA;
+
+			.line {
+				width: 100%;
+				margin-top: 15px;
+				margin-bottom: 15px;
+
+				border-top: 1px solid #A7AAAA;
+			}
+
+			input {
+				width: 320px;
+
+				line-height: 25px;
+
+				padding-left: 10px;
+				margin-bottom: 10px;
+
+				background: linear-gradient(#f0f0f0,#f5f5f5);
+				border-radius: 3px;
+				box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+				box-sizing: border-box;
+				width: 100%;
+				border: 1px solid #d6d3ce;
+				color: #333;
+				font-size: 14px;
+				padding: 7px;
+			}		
+			
+			.shared {
+				@include shared(350px);
+			}
+		}
+
+		
+	}
+}
+
+
+#login {
+	@include contentbox(400px);
+
+	input {
+		@include formstyle(350px);
+	}
+
+	.label {
+		text-align: left;
+		@include miniheader(20px, 22px);
+	}
+
+	.actions {
+		margin-top: 10px;
+		.button {
+			min-width: 378px;
+
+			-webkit-font-smoothing: antialiased;
+			vertical-align: baseline;
+
+		    padding: 7px;
+
+		    background-color: $secondarycolor;
+
+		    border-radius: 3px;
+
+		    box-shadow: 0 0 3px #A7AAAA;
+
+		    color: #333;
+			text-shadow: 0 -1px rgba(0,0,0,0.11);
+			text-decoration: none;
+			line-height: 30px;
+			font-family: Calibri;
+			font-weight: bold;
+			font-size: 26px;
+
+			&:hover {
+				box-shadow: 0 1px 0 0 rgba(255,255,255,0.34);
+				background-color: $freshness;
+
+				color: #fff;
+			}
+		}
+	}
+
+
+	.shared {
+		@include shared(370px)
+	}
+}

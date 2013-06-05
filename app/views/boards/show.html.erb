@@ -1,0 +1,44 @@
+<div id="boardshow">
+  <div class="header">
+    <%= @board.name %>
+  </div>
+
+  <!-- Description -->
+  <div id="header-description">
+    " <%= @board.description %> "
+  </div>
+
+
+  <div class="navigationbar">
+    <div class="one">
+      <%= link_to (image_tag @board.user.avatar_url(:user35).to_s), user_path(@board.user) %>
+      <%= link_to (@board.user.username), user_path(@board.user) %>
+    </div>
+
+    <div class="two">
+      <%= link_to "Modifier le Tableau", "#modal-edit-"+@board.name %>
+    </div>
+
+    <div class="three">
+      
+      <ul>
+        <li><%= Pun.where("board_id = ?", @board.id).count %> Punaises</li>
+        <li class="last"><%= @board.followers(User).count %> Abonnés</li>
+        <li>
+
+          <% if current_user.follows?(@board) %>
+            <%= link_to "Se Désabonner", toggle_follow_path(@board) %>
+          <% else %>
+            <%= link_to "S'abonner", toggle_follow_path(@board) %>
+          <% end %>
+        
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <%= render "boards/list_board_puns" %>
+
+  <%= render "boards/edit_board_modal" %>
+

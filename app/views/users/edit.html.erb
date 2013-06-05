@@ -1,0 +1,89 @@
+<div id="usettings">
+	
+	<%= form_for(@user) do |f| %>
+	
+	<h1>Parametres du Compte</h1>
+	
+	<div class="form">
+
+		<div class="title">
+			Informations de base
+		</div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Nom:
+		    </div>
+		    <div class="champ">
+		    	<%= f.text_field :username %>
+		    </div>
+		  </div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Email:
+		    </div>
+		    <div class="champ">
+		    	<%= f.text_field :email %>
+		    </div>
+		  </div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Avatar:
+		    </div>
+		    <div class="champ">
+		    <%= f.file_field :avatar %>
+		    </div>
+		  </div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Pays:
+		    </div>
+		    <div class="champ">
+		    	<select id="user_country_id" name="user[country_id]">
+			      <% Country.all.each do |country|  %>
+			        <option value="<%= country.id %>"><%= country.name %> </option>
+			      <% end %>
+			    </select>
+		  	</div>
+		  </div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Ville:
+		    </div>
+		    <div class="champ">
+		    	<select id="user_state_id" name="user[state_id]">
+			      <% State.all.each do |state|  %>
+			        <option value="<%= state.id %>"><%= state.name %> </option>
+			      <% end %>
+			    </select>
+		  	</div>
+		  </div>
+
+		</div>
+
+		<div class="submitbox">
+			<div class="nuclear">
+				<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+			</div>
+
+			<div class="actions">
+				<a href="">Cancel</a>
+				<%= f.submit %>
+			</div>
+		</div>
+		  
+
+		
+	</div>
+
+	<% end %>
+</div>

@@ -1,0 +1,87 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "colors";
+
+#homecontent {
+	width: 700px;
+
+	margin: 0 auto;
+	margin-top: 30px;
+
+	text-align: center;
+
+	.motto {
+		font-weight: 400;
+		font-size: 42px;
+		font-family: timesnewroman;
+
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+
+	.interact {
+		margin-top: 30px;
+		a {
+			-webkit-font-smoothing: antialiased;
+			vertical-align: baseline;
+
+		    padding: 7px;
+		    margin-left: 10px;
+
+		    background-color: $secondarycolor;
+
+		    border-radius: 3px;
+
+		    box-shadow: 0 0 3px #A7AAAA;
+
+		    color: #333;
+			text-shadow: 0 -1px rgba(0,0,0,0.11);
+			text-decoration: none;
+			line-height: 30px;
+			font-family: Calibri;
+			font-weight: bold;
+			font-size: 22px;
+
+			&:hover {
+				box-shadow: 0 1px 0 0 rgba(255,255,255,0.34);
+				background-color: #B13756;
+
+				color: #fff;
+			}
+		}
+	}
+
+	.annotations {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+
+		ul {
+			padding: 0px;
+			margin: 0px;
+
+			li {
+				padding: 0px;
+				margin: 10px;
+
+				list-style: none;
+
+				text-align: right;
+
+				a {
+					background-color: #333;
+					opacity: 0.8;
+				
+					color: #FFF;
+					text-decoration: none;
+
+					padding: 5px;
+
+					border-radius: 3px;
+				}
+			}
+		}
+	}
+}

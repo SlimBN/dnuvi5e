@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Punaise</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render "layouts/header" %>
+
+<%= yield %>
+
+
+
+<% if user_signed_in? %>
+<%= render "modals/new_board" %>
+<%= render "modals/new_pun" %>  
+<% end %>
+
+</body>
+</html>

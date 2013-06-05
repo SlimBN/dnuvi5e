@@ -1,0 +1,43 @@
+<header>
+	<div class="one">
+
+		<%= render "layouts/categories_menu" %>
+
+	</div>
+
+	<div class="two">
+		<%= link_to (image_tag "logo.png"), root_path() %>
+	</div>
+
+	<div class="three">
+		<% if user_signed_in? %>
+			<div class="addpun"><%= link_to (image_tag "icons/pun.png"), "#modal-new-pun" %></div>
+
+			<div id="upanellink">
+				<div class="userlink">
+					<ul>
+						<li><%= image_tag current_user.avatar_url(:pundatathumb).to_s, :size => "26x26" %></li>
+						<li class="name"><%= link_to current_user.username, current_user %></li>
+						<li></li>
+					</ul>
+					
+				</div>
+
+				<div id="uoptions">
+					<ul>
+						<li><%= link_to "Nouvelle Punaise", "#modal-new-pun" %></li>
+						<li><%= link_to "Nouveau Tableau", "#modal-new-board" %></li>
+						<li><%= link_to "Mes Punaises", user_path(current_user) + "#tabs-1" %></li>
+						<li><%= link_to "Mes Tableaux", user_path(current_user) + "#tabs-2" %></li>
+						<li><%= link_to "Parametres", edit_user_path(current_user) %></li>
+						<li><%= link_to "Se Déconnecter", logout_path() %></li>
+					</ul>
+				</div>
+			</div>
+			
+		<% else %>
+			<div class="button"><%= link_to "Se Connecter", login_path() %></div>
+			<div class="button"><%= link_to "S'enregistrer", register_path() %></div>
+		<% end %>
+	</div>
+</header>

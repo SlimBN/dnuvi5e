@@ -1,0 +1,64 @@
+<div class="commentsbloc">
+
+
+    <% Comment.where("pun_id = ?", @pun.id).order("created_at ASC").each do |comment| %>
+        <div class="comment">
+          <div class="thumb">
+              <%= image_tag @pun.user.avatar_url(:commentsthumb).to_s %>
+          </div>
+
+          <div class="data">
+              <div class="user">
+                <% if user_signed_in? and (comment.user_id == current_user.id) %>
+                <div class="delete">
+                
+                </div>
+                <% end %>
+                
+                <%= link_to @pun.user.username, user_path(@pun.user) %>
+              </div>
+            
+              <div class="time">
+                il y'a <%= time_ago_in_words(@pun.created_at) %>
+              </div>
+
+              <div class="content">
+                <%= comment.content %>
+              </div>
+          </div>
+        </div>
+
+    <% end %>
+
+
+    <% unless user_signed_in? %>
+        <div class="pleaseconnect">
+          <%= link_to "Enregistrez vous", register_path() %> ou <%= link_to "connectez vous", login_path() %> pour pouvoir commenter cette punaise.
+        </div>
+    <% end %>
+      
+    <% if user_signed_in? %>
+        <div class="docomment">
+          <div class="thumb">
+            <%= image_tag current_user.avatar_url(:commentsthumb).to_s %>
+          </div>
+
+          <div class="textarea">
+            <%= form_for(Comment.new(params[:comment]), :remote => true) do |f| %>
+          <%= f.text_area :content, :placeholder => "Commentez et Argumentez..." %>
+
+            <%= f.hidden_field :pun_id, :value => @pun.id %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+
+            <div class="actions">
+                <input name="commit" type="submit" value="Repondre" />
+            </div>
+              <% end %> 
+          </div>
+        </div>
+
+    <% end %>
+
+</div>
+
+

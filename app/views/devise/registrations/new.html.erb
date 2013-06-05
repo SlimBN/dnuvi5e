@@ -1,0 +1,56 @@
+<div id="register">
+	
+	<div class="createaccount">
+		Créez votre compte
+	</div>
+
+	<div class="forms">
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  
+  		<div class="left">
+		    <div class="champ">
+		    	<%= f.file_field :avatar %>
+		    </div>
+  		</div> 
+
+		<div class="right">
+			
+			<div class="field">
+			    	<%= f.text_field :username, :placeholder => "Nom d'utilisateur" %>
+			</div>
+
+			<div class="field">
+					<%= f.email_field :email, :autofocus => true, :placeholder => "Addresse Email" %>
+			</div>
+
+			<div class="line"></div>
+
+			<div class="field">
+					<%= f.password_field :password, :placeholder => "Votre mot de passe" %>
+			</div>
+
+			<div class="field">
+				<%= f.password_field :password_confirmation, :placeholder => "Veuillez confirmez le mot de passe" %>
+			</div>
+
+			<div class="line"></div>
+
+			<div class="field">
+				En créant un compte, vous acceptez les Conditions d'utilisation et les Règles de confidentialité de Punaise.
+			</div>
+
+			<div class="line"></div>
+
+	  		<div><%= f.submit "Sign up" %></div>
+
+			<div class="line"></div>
+
+			<%= render "devise/shared/links" %>
+			
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+

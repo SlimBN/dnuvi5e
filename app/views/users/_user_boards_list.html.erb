@@ -1,0 +1,39 @@
+<div id="userboardslist">
+	<% if user_signed_in? %>
+	<% if (@user.id == current_user.id) %>
+	<a href="<%= new_board_path() %>"><div class="newboard">
+		<div class="addboard">
+			
+		</div>
+		<div class="addboardtext">
+			add a board
+		</div>
+	</div></a>
+	<% end %>
+	<% end %>
+	<% Board.all.each do |board|  %>
+      
+	<div class="board">
+		<div class="title">
+			<%= link_to (board.name), board_path(board) %>
+		</div>
+		<div class="maincover">
+			<% Pun.where("board_id = ?", board.id).first(1).each do |boardmainthumb| %>
+	            <%= image_tag boardmainthumb.image_url(:userboardthumb).to_s %>
+	        <% end %>
+		</div>
+		<div class="tinycovers">
+
+			<% Pun.where("board_id = ?", board.id).last(4).each do |boardtinythumb| %>
+				<div class="tinycover">
+		            <%= image_tag boardtinythumb.image_url(:userboardtinythumb).to_s %>
+				</div>
+	        <% end %>
+		</div>
+		<div class="edit"><a href="">Modifier</a></div>
+	</div>
+	<% end %>	
+</div>
+
+
+</div>

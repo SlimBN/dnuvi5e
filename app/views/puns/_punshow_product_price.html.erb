@@ -1,0 +1,10 @@
+<% if (@pun.is_product == TRUE) %>
+<div class="product">
+	<div class="annonce">
+		Vous pourrez l'avoir pour
+	</div>
+	<div class="price">
+		<%= @pun.price %><%= @pun.currency %>
+	</div>
+</div>
+<% end %>

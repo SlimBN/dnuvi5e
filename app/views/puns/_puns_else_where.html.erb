@@ -1,0 +1,24 @@
+<h1>Également épinglé sur :</h1>
+
+<% Pun.where("original_punaise_id = ?", @pun.id).each do |repun|  %>
+      
+	<div class="board">
+		<div class="title">
+			<%= link_to (repun.board.name), board_path(repun.board) %>
+		</div>
+		<div class="maincover">
+			<% Pun.where("board_id = ?", repun.board.id).first(1).each do |boardmainthumb| %>
+	            <%= image_tag boardmainthumb.image_url(:userboardthumb).to_s %>
+	        <% end %>
+		</div>
+		<div class="tinycovers">
+
+			<% Pun.where("board_id = ?", repun.board.id).last(4).each do |boardtinythumb| %>
+				<div class="tinycover">
+		            <%= image_tag boardtinythumb.image_url(:userboardtinythumb).to_s %>
+				</div>
+	        <% end %>
+		</div>
+		<div class="edit"><a href="">Modifier</a></div>
+	</div>
+<% end %>

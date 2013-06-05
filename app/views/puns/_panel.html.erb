@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+	<%= link_to "Ajouter à mon Tableau", "#modal-" + @pun.id.to_s, :class => "weblink" %>
+
+	<% if current_user.likes?(@pun) %>
+	    <%= link_to "Je n'aime plus", toggle_like_path(@pun), :remote => true, :class => "weblink" %>
+	<% else %>
+	    <%= link_to "J'aime", toggle_like_path(@pun), :remote => true, :class => "weblink" %>
+	<% end %>
+
+<% end %>
+
+	<%= link_to "Site Web", "http://" + @pun.link, :class => "weblink" %>
+
+<% if user_signed_in? and (@pun.user_id == current_user.id) %>
+	<%= link_to "Modifier", edit_pun_path(@pun), :class => "weblink" %>
+<% end %>

@@ -1,0 +1,7 @@
+<% unless user_signed_in? %>
+
+  <%= render "homes/offline_home" %>
+
+<% else %>
+  <%= render "homes/online_home" %>
+<% end %>

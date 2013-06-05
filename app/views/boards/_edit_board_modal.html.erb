@@ -1,0 +1,24 @@
+<aside id="modal-edit-<%= @board.name %>" class="modal" >
+	<div>
+
+                      	<%= form_for(Board.find(params[:id])) do |f| %>
+
+						  <div class="field">
+						    <%= f.label :name %><br />
+						    <%= f.text_field :name %>
+						  </div>
+						  <div class="field">
+						    <%= f.label :description %><br />
+						    <%= f.text_field :description %>
+						  </div>
+					      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+						  
+						  <div class="actions">
+						    <%= f.submit %>
+						  </div>
+
+						<% end %>
+
+    </div>
+</aside>

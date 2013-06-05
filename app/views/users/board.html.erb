@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+
+<div id="ubox">
+  <div class="left">
+    <div class="avatar">
+      <%= image_tag @user.avatar_url(:profil).to_s %>
+    </div>
+
+    <div class="credits">
+      <div class="name">
+        <%= @user.username %>
+      </div>
+      
+    </div>
+
+    <div class="downlinks">
+    <% if user_signed_in? %>
+      <% if (@user.id == current_user.id) %>
+      <%= link_to (image_tag "icons/edit.png"), edit_user_path(current_user) %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="right">
+    
+  </div>
+</div>
+
+<div id="uinfobar">
+  <div class="punaisescount">
+    <a href="#" ><%= Pun.where("user_id = ?", @user.id).count %> Punaises</a>
+  </div>
+</div>
+
+<!--
+<%= render "users/user_puns_list" %>
+-->
+
+<%= render "users/user_boards_list" %>
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

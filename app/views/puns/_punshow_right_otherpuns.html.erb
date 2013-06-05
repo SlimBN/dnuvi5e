@@ -1,0 +1,16 @@
+
+<% unless (Pun.where("user_id = ? AND original_punaise_id IS NULL", @pun.user_id).count == 0) %>
+<div class="otherpuns">
+
+    <div class="otherby">Autres punaises par</div>
+
+    <div class="punner"><%= link_to @pun.user.username, user_path(@pun.user) %></div>
+
+    <div class="puns">
+        <% Pun.where("user_id = ? AND original_punaise_id IS NULL", @pun.user_id).last(12).each do |punthumb| %>
+          <%= link_to (image_tag punthumb.image_url(:thumb).to_s, :title => punthumb.title), pun_path(punthumb) %>
+        <% end %>
+    </div>
+    
+</div>
+<% end %>

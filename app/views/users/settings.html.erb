@@ -1,0 +1,71 @@
+<div id="usettings">
+	
+	<%= form_for(@user) do |f| %>
+	
+	<h1>Parametres du Compte</h1>
+	
+	<div class="form">
+
+		<div class="title">
+			Informations de base
+		</div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Nom:
+		    </div>
+		    <div class="champ">
+		    	<%= f.text_field :username %>
+		    </div>
+		  </div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Email:
+		    </div>
+		    <div class="champ">
+		    	<%= f.text_field :email %>
+		    </div>
+		  </div>
+
+
+		  <div class="field">
+		    <div class="label">
+		    	Avatar:
+		    </div>
+		    <div class="champ">
+		    <%= f.file_field :avatar %>
+		    </div>
+		  </div>
+
+
+		  <div class="field">
+		    <%= f.label :country_id %><br />
+		    <%= f.number_field :country_id %>
+		  </div>
+		  <div class="field">
+		    <%= f.label :state_id %><br />
+		    <%= f.number_field :state_id %>
+		  </div>
+
+		</div>
+
+		<div class="submitbox">
+			<div class="nuclear">
+				<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+			</div>
+
+			<div class="actions">
+				<a href="">Cancel</a>
+				<%= f.submit %>
+			</div>
+		</div>
+		  
+
+		
+	</div>
+
+	<% end %>
+</div>

@@ -1,0 +1,210 @@
+<div id="repunnerspuns">
+	<div id="tiles" class="repunner">
+		
+          <% Pun.where("original_punaise_id = ?", @pun.id).last(20).each do |pun| %>
+          	
+            <li class="tile">
+                <div class="toplink">
+                  <a href="#modal-<%= pun.id %>"><div class="punit"></div></a>
+                </div>
+                <%= link_to (image_tag pun.image_url(:grid).to_s), pun_path(pun) %>
+
+                <div class="description">
+                	<%= pun.description %>
+                </div>
+
+                <ul class="pundatas">
+                	<li class="pundata" %>
+                		<div class="thumb">
+                			<%= image_tag pun.user.avatar_url(:pundatathumb).to_s %>
+                		</div>
+
+                		<div class="data">
+                			<div class="by">
+                				par
+                			</div>
+                			<div class="user">
+                				<%= link_to pun.user.username, user_path(pun.user) %>
+                			</div>
+                		</div>
+                	</li>
+                  
+
+                  <!-- PUNNED ON -->
+                  <li class="punboard">
+                    <div class="boardthumb">
+                      <% Pun.where("board_id = ?", pun.board_id).first(1).each do |boardthumb| %>
+                        <%= image_tag boardthumb.image_url(:boardthumb).to_s %>
+                      <% end %>
+                    </div>
+
+                    <div class="punnedondata">
+                      <div class="punnedon">
+                        Clouée sur
+                      </div>
+                      <div class="board">
+
+                        <%= pun.board.name %>
+
+
+                      </div>
+                    </div>
+
+                  </li>
+
+                  
+
+                  <!-- ORIGINALLY PUNNED ON -->
+                  <% unless pun.original_board_id.nil? %>
+                  <li class="punboard">
+                    <div class="boardthumb">
+                      <% Pun.where("board_id = ?", pun.original_board_id).first(1).each do |boardthumb| %>
+                        <%= image_tag boardthumb.image_url(:boardthumb).to_s %>
+                      <% end %>
+                    </div>
+
+                    <div class="punnedondata">
+                      <div class="punnedon">
+                        Originellement sur
+                      </div>
+                      <div class="board">
+                        <% Board.where("id = ?", pun.original_board_id).first(1).each do |board| %>
+                        <%= board.name %>
+                        <% end %>
+
+
+                      </div>
+                    </div>
+
+                  </li>
+                  <% end %>
+
+
+                </ul>
+
+
+
+              <aside id="modal-<%= pun.id %>" class="modal">
+
+
+                        <div id="modal-share-pun">
+                          
+                          <div class="left">
+                            <div class="shared-pun">
+                              <%= image_tag pun.image_url(:grid).to_s %>
+                            </div>
+
+                            <div class="original-punner">
+                              <div class="uthumb">
+                                <%= image_tag pun.user.avatar_url(:pundatathumb).to_s %>
+                              </div>
+
+                              <div class="uname">
+                                Ajoutée par <%= link_to pun.user.username, user_path(pun.user) %>
+                              </div>
+                            </div>
+                            
+                            <!-- exception a enlevé ulterieurment -->
+                            <% unless pun.board.nil? %>
+                            <div class="original-board">
+                              <div class="boardthumb">
+                                <% Pun.where("board_id = ?", pun.board).first(1).each do |boardthumb| %>
+                                  <%= image_tag boardthumb.image_url(:datathumb).to_s %>
+                                <% end %>
+                              </div>
+
+                              <div class="punboard">
+                                  Originellement sur <%= pun.board.name %>
+                              </div>
+                            </div>
+                            <% end %>
+
+                          </div>
+
+                          <div class="right">
+                            
+                            <%= form_for(Pun.new(params[:pun])) do |f| %>
+
+                              <div class="label" ><%= f.label :title %></div>
+                                <%= f.text_field :title, :value => pun.title %>
+                              
+
+                              <div class="label" ><%= f.label :board_id %></div>
+                                <select id="pun_board_id" name="pun[board_id]">
+                                  <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                                    <option value="<%= board.id %>"><%= board.name %> </option>
+                                  <% end %>
+                                </select>
+                                <%= link_to "Ajouter un Tableau", new_board_path() %>
+
+                              <div class="label" ><%= f.label :description %></div>
+                                <%= f.text_field :description, :value => pun.description %>
+
+                                <%= f.hidden_field :remote_image_url, :value => "http://localhost:3000"+pun.image_url.to_s %>
+                                <%= f.hidden_field :user_id, :value => current_user.id %>
+
+
+                                <% if pun.original_board_id.nil? %>
+                                  <%= f.hidden_field :original_board_id, :value => pun.board_id %>
+                                  <%= f.hidden_field :original_punaise_id, :value => pun.id %>
+                                  <%= f.hidden_field :original_user_id, :value => pun.user_id %>
+                                <% else %>
+                                  <%= f.hidden_field :original_board_id, :value => pun.original_board_id %>
+                                  <%= f.hidden_field :original_punaise_id, :value => pun.original_punaise_id %>
+                                  <%= f.hidden_field :original_user_id, :value => pun.original_user_id %>
+                                <% end %>
+
+                                <%= f.hidden_field :websource, :value => pun.websource %>
+                                <%= f.hidden_field :link, :value => pun.websource %>
+
+
+                                <div class="actions">
+                                  <input name="commit" type="submit" value="Repondre" />
+                                </div>
+
+                              <% end %>
+
+                          </div>
+
+                        </div>
+
+
+
+              </aside>
+
+            </li>
+        <% end %>
+
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(new function() {
+      // Prepare layout options.
+      var options = {
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('#repunnerspuns'), // Optional, used for some extra CSS styling
+        offset: 10, // Optional, the distance between grid items
+        itemWidth: 235 // Optional, the width of a grid item
+      };
+
+      // Get a reference to your grid items.
+      var handler = $('.tile');
+
+      // Call the layout function.
+      handler.wookmark(options);
+
+      $('.tile').imagesLoaded(function() {
+		  // do stuff after images are loaded
+		  handler.wookmark(options);
+		});
+
+
+
+      $('#repunnerspuns').trigger('refreshWookmark');
+
+    });
+</script>

@@ -1,0 +1,1 @@
+    		<%= @pun.likers(User).count %> <%= image_tag "icon/love.png" %>   <%= @pun.comments.where("pun_id = ?", @pun.id).count %> <%= image_tag "icon/comment.png" %>

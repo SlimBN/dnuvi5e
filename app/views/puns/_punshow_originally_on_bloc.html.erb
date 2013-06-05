@@ -1,0 +1,33 @@
+<div class="originally-on-bloc">
+	<div class="originally-on">
+		<% Pun.where("board_id = ?", @pun.original_board_id).first(1).each do |boardthumb| %>
+			<div class="thumb">
+   				<%= image_tag boardthumb.image_url(:thumb).to_s %>
+			</div>
+			<div class="text">
+				<div class="label">
+					Originellement Sur
+				</div>
+				<div class="content">
+					<%= link_to (boardthumb.board.name), board_path(boardthumb.board) %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="originally-by">
+		<% Pun.where("board_id = ?", @pun.original_board_id).first(1).each do |boardthumb| %>
+			<div class="thumb">
+   				<%= image_tag boardthumb.user.avatar_url(:commentsthumb).to_s %>
+			</div>
+			<div class="text">
+				<div class="label">
+					Par
+				</div>
+				<div class="content">
+					<%= link_to (boardthumb.user.username), user_path(boardthumb.user) %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

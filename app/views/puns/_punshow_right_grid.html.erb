@@ -1,0 +1,36 @@
+<div class="boardbloc">
+    <div class="data">
+
+        <div class="thumb">
+          <% Pun.where("board_id = ?", @pun.board).first(1).each do |boardthumb| %>
+            <%= image_tag boardthumb.image_url(:datathumb).to_s %>
+          <% end %>
+        </div>
+
+        <div class="whereandby">
+
+          <div class="where">
+            <%= link_to @pun.board.name, board_path(@pun.board) %>
+          </div>
+
+          <div class="by">
+            <%= link_to @pun.user.username, user_path(@pun.user) %>
+          </div>
+
+        </div>
+
+    </div>
+
+    <div class="punshow-grid">
+        <% Pun.where("board_id = ?", @pun.board).each do |pun| %>
+          <%= link_to (image_tag pun.image_url(:punshowgrid).to_s, :class => "punshow-grid-pun", :title => pun.title), pun_path(pun) %>
+        <% end %>
+    </div>
+
+    <% if user_signed_in? %>
+      <div class="follow">
+        <%= render "puns/ajax/toggle_follow" %>
+      </div>
+    <% end %>
+    
+</div>

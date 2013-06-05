@@ -1,0 +1,58 @@
+<div id="userpunslist">
+    
+    <div id="tiles">
+        <% Pun.where("user_id = ?", @user.id).each do |pun| %>
+            <li class="tile">
+                <%= link_to (image_tag pun.image_url(:grid).to_s), pun_path(pun) %>
+
+                <div class="description">
+                	<%= pun.description %>
+                </div>
+
+                <ul class="pundatas">
+                	<li class="pundata" %>
+                		<div class="thumb">
+                			<%= image_tag pun.user.avatar_url(:pundatathumb).to_s %>
+                		</div>
+
+                		<div class="data">
+                			<div class="by">
+                				par
+                			</div>
+                			<div class="user">
+                				<%= link_to pun.user.username, user_path(pun.user) %>
+                			</div>
+                		</div>
+                	</li>
+                </ul>
+            </li>
+        <% end %>
+    </div>
+</div>
+
+  <script type="text/javascript">
+    $(document).ready(new function() {
+      // Prepare layout options.
+      var options = {
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('#tabs-1 #userpunslist'), // Optional, used for some extra CSS styling
+        offset: 10, // Optional, the distance between grid items
+        itemWidth: 235 // Optional, the width of a grid item
+      };
+
+      // Get a reference to your grid items.
+      var handler = $('#tiles .tile');
+
+      // Call the layout function.
+      handler.wookmark(options);
+
+      $('#tiles .tile').imagesLoaded(function() {
+		  // do stuff after images are loaded
+		  handler.wookmark(options);
+		});
+
+
+      $('#userpunslist').trigger('refreshWookmark');
+
+    });
+  </script>

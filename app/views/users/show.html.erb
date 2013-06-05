@@ -1,0 +1,51 @@
+<div id="ubox">
+  <div class="left">
+    <div class="avatar">
+      <%= image_tag @user.avatar_url(:profil).to_s %>
+    </div>
+
+    <div class="credits">
+      <div class="name">
+        <%= @user.username %>
+      </div>
+      
+    </div>
+
+    <div class="downlinks">
+    <% if user_signed_in? %>
+      <% if (@user.id == current_user.id) %>
+      <%= link_to (image_tag "icons/edit.png"), edit_user_path(current_user) %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="right">
+    <% unless user_signed_in? and (@user.id == current_user.id) %>
+    <%= form_for "/users/follow/" do |f| %>
+      <%= submit_tag (current_user.follows?(@user) ? "Following" : "Not following"), :class => "button" %>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div id="sectoreduserdata">
+  
+<div id="uinfobar">
+  <ul>
+    <li><a href="#tabs-1"><%= Pun.where("user_id = ?", @user.id).count %> Punaises</a></li>
+    <li><a href="#tabs-2"><%= Board.where("user_id = ?", @user.id).count %> Tableaux</a></li>
+  </ul>
+
+</div>
+
+  <div id="tabs-1">
+    <%= render "users/user_puns_list" %>
+  </div>
+  <div id="tabs-2">
+    <%= render "users/user_boards_list" %>
+  </div>
+
+</div>
+
+

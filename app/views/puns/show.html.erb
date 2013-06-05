@@ -1,0 +1,80 @@
+<!-- The punaise title -->
+<div id="header-title">
+  <%= @pun.title %>
+</div>
+
+<!-- Description -->
+<div id="header-description">
+  " <%= @pun.description %> "
+</div>
+
+
+
+<div id="punshow">
+
+  <div class="left">
+    
+    <%= render "puns/punshow_pun" %>
+
+    <div id="commentaires">
+      <%= render "puns/punshow_comment_bloc" %>
+    </div>
+
+    
+    
+    <% unless @pun.original_board_id.nil? %>
+    <%= render "puns/punshow_originally_on_bloc" %>
+    <% end %>
+
+  </div>
+
+  <div class="right">
+
+    <%= render "puns/punshow_product_price" %>
+
+    <%= render "puns/punshow_right_grid" %>
+
+    <%= render "puns/punshow_right_otherpuns" %>
+    
+  </div>
+
+</div>
+
+<% unless (Pun.where("original_punaise_id = ?", @pun.id).count == 0) %>
+<div id="punelsewhere">
+
+  <%= render "puns/puns_else_where" %>
+
+</div>
+<% end %>
+
+<%= render "puns/repunners_puns" %>
+
+
+  <script type="text/javascript">
+    $(document).ready(new function() {
+      // Prepare layout options.
+      var options = {
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('.punshow-grid'), // Optional, used for some extra CSS styling
+        offset: 4, // Optional, the distance between grid items
+        itemWidth: 65 // Optional, the width of a grid item
+      };
+
+      // Get a reference to your grid items.
+      var handler = $('.punshow-grid-pun');
+
+      // Call the layout function.
+      handler.wookmark(options);
+
+      $('.punshow-grid-pun').imagesLoaded(function() {
+      // do stuff after images are loaded
+      handler.wookmark(options);
+    });
+
+
+
+      $('.punshow-grid').trigger('refreshWookmark');
+
+    });
+  </script>

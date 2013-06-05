@@ -1,0 +1,14 @@
+
+		<div class="categorylink">
+			
+			<%= link_to (image_tag "categories.png"), "" %>
+
+			<div id="categories">
+				<ul>
+					<% Category.all.each do |category| %>
+					<li><%= image_tag "categories/" + category.icon + ".png" %><%= link_to category.name, category_path(category) %></li>
+					<% end %>
+				</ul>
+			</div>
+
+		</div>

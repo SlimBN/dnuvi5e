@@ -1,0 +1,29 @@
+<div id="modal-new-board" class="modal">
+    <div>
+
+                      	<%= form_for(Board.new(params[:board])) do |f| %>
+
+						  <div class="field">
+						    <div class="label">Nom du tableau</div>
+						    <%= f.text_field :name %>
+						  </div>
+						  <div class="field">
+						    <div class="description">Description</div>
+						    <%= f.text_area :description %>
+						  </div>
+
+
+
+						    <%= f.hidden_field :user_id, :value => current_user.id %>
+						    <%= f.hidden_field :cover_id %>
+
+						  
+						  <div id="actions">
+						    <input name="commit" type="submit" value="Clouer" />
+						  </div>
+
+						<% end %>
+
+                      </div>
+    </div>
+</div>

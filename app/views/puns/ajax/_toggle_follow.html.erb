@@ -1,0 +1,5 @@
+      <% if current_user.follows?(@pun.board) %>
+        <%= link_to "Se Désabonner", toggle_follow_path(@pun.board), :remote => true, :class => "weblink" %>
+      <% else %>
+        <%= link_to "S'abonner", toggle_follow_path(@pun.board), :remote => true, :class => "weblink" %>
+      <% end %>

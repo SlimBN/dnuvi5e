@@ -1,0 +1,60 @@
+
+<h1>Listing puns</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Image</th>
+    <th>User</th>
+    <th>Original user</th>
+    <th>Board</th>
+    <th>Original board</th>
+    <th>Original punaise</th>
+    <th>Is deleted</th>
+    <th>Websource</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @puns.each do |pun| %>
+  <tr>
+    <td><%= pun.title %></td>
+    <td><%= pun.image %></td>
+    <td><%= pun.user_id %></td>
+    <td><%= pun.original_user_id %></td>
+    <td><%= pun.board_id %></td>
+    <td><%= pun.original_board_id %></td>
+    <td><%= pun.original_punaise_id %></td>
+    <td><%= pun.is_deleted %></td>
+    <td><%= pun.websource %></td>
+    <td><%= link_to 'Show', pun %></td>
+    <td><%= link_to 'Edit', edit_pun_path(pun) %></td>
+    <td><%= link_to 'Destroy', pun, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pun', new_pun_path %>
+  <!-- Once the page is loaded, initalize the plug-in. -->
+ 
+  <script type="text/javascript">
+    $(document).ready(new function() {
+      // Prepare layout options.
+      var options = {
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('#punslist'), // Optional, used for some extra CSS styling
+        offset: 10, // Optional, the distance between grid items
+        itemWidth: 235 // Optional, the width of a grid item
+      };
+
+      // Get a reference to your grid items.
+      var handler = $('#tiles li');
+
+      // Call the layout function.
+      handler.wookmark(options);
+
+    });
+  </script>

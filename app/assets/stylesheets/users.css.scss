@@ -1,0 +1,378 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#usettings {
+	width: 700px;
+	margin: 0 auto;
+	margin-top: 50px;
+
+	text-align: center;
+
+	h1 {
+		color: #333;
+		color: rgba(21,21,21,0.8);
+		text-shadow: 1px 2px 4px #fff,0 0 0 #000,0 1px 0 #fff;
+		font-size: 30px;
+
+	}
+
+	.form {
+		width: 700px;
+
+		margin-top: 30px;
+
+		background-color: #fff;
+
+		border-radius: 3px;
+
+		box-shadow: 0 0 3px #A7AAAA;
+
+		.title {
+			color: #181319;
+			font-weight: 700;
+			font-size: 20px;
+			line-height: 30px;
+			text-align: left;
+
+			width: 680px;
+
+			padding: 10px;
+
+			border-bottom: 1px solid #D8D8D8;
+		}
+
+		.field {
+			color: #434343;
+			line-height: 30px;
+			text-align: left;
+
+			width: 680px;
+
+			padding: 10px;
+
+			border-bottom: 1px solid #D8D8D8;
+
+			.label {
+				display: inline-block;
+
+				width: 300px;
+
+				text-align: left;
+				font-size: 12px;
+				font-weight: 600;
+			}
+
+			.champ {
+				display: inline-block;
+
+				width: 350px;
+
+				text-align: right;
+
+				input {
+					width: 320px;
+
+					line-height: 25px;
+
+					padding-left: 10px;
+
+					background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0f0f0), color-stop(100%, #f5f5f5));
+					background: -webkit-linear-gradient(#f0f0f0,#f5f5f5);
+					background: -moz-linear-gradient(#f0f0f0,#f5f5f5);
+					background: -o-linear-gradient(#f0f0f0,#f5f5f5);
+					background: linear-gradient(#f0f0f0,#f5f5f5);
+					-webkit-border-radius: 3px;
+					-moz-border-radius: 3px;
+					-ms-border-radius: 3px;
+					-o-border-radius: 3px;
+					border-radius: 3px;
+					-webkit-box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+					-moz-box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+					box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					box-sizing: border-box;
+					width: 100%;
+					border: 1px solid #d6d3ce;
+					color: #333;
+					font-size: 14px;
+					padding: 7px;
+				}
+			}
+		}
+	}
+
+	.submitbox {
+		width: 700px;
+
+		line-height: 50px;
+
+		margin-top: 30px;
+
+		background-color: #EDEDED;
+
+		border-radius: 3px;
+
+		box-shadow: 0 0 3px #A7AAAA;
+
+		.nuclear {
+			width: 300px;
+
+			display: inline-block;
+
+			text-align: left;
+
+
+			a {
+				-webkit-font-smoothing: antialiased;
+				vertical-align: baseline;
+
+			    padding: 7px;
+
+			    background-color: #fff;
+
+			    border-radius: 3px;
+
+			    box-shadow: 0 0 3px #A7AAAA;
+
+			    color: #333;
+				text-shadow: 0 -1px rgba(0,0,0,0.11);
+				text-decoration: none;
+				line-height: 50px;
+				font-family: Calibri;
+				font-weight: bold;
+				font-size: 16px;
+			}
+		}
+
+		.actions {
+			width: 370px;
+
+			display: inline-block;
+
+			text-align: right;
+
+			input {
+				-webkit-font-smoothing: antialiased;
+				background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e3262e), color-stop(100%, #ab171e));
+				background-image: -webkit-linear-gradient(#e3262e,#ab171e);
+				background-image: -moz-linear-gradient(#e3262e,#ab171e);
+				background-image: -o-linear-gradient(#e3262e,#ab171e);
+				background-image: linear-gradient(#e3262e,#ab171e);
+				box-shadow: 0 1px 0 0 rgba(255,255,255,0.34);
+				background-color: #ab171e;
+				border: 1px solid;
+				border-bottom-color: #820a0f;
+				border-left-color: #9a1015;
+				border-right-color: #9a1015;
+				border-top-color: #af151b;
+
+				color: #fff;
+				text-shadow: 0 -1px rgba(0,0,0,0.11);
+				line-height: 30px;
+				font-family: Calibri;
+				font-weight: bold;
+				font-size: 16px;
+
+				border-radius: 3px;
+			}
+
+			a {
+				-webkit-font-smoothing: antialiased;
+				vertical-align: baseline;
+
+			    padding: 7px;
+
+			    background-color: #fff;
+
+			    border-radius: 3px;
+
+			    box-shadow: 0 0 3px #A7AAAA;
+
+			    color: #333;
+				text-shadow: 0 -1px rgba(0,0,0,0.11);
+				text-decoration: none;
+				line-height: 50px;
+				font-family: Calibri;
+				font-weight: bold;
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+#ubox {
+	width: 1000px;
+
+	margin: 0 auto;
+	margin-top: 30px;
+	padding: 0px;
+
+	text-align: center;
+
+	.left {
+		width: 600px;
+		height: 150px;
+
+		position: relative;
+		
+		margin: 0px;
+		margin-right: 5px;
+		padding: 0px;
+
+		text-align: left;
+
+		display: inline-block;
+
+		background-color: #fff;
+
+		border-radius: 3px;
+
+		box-shadow: 0 0 3px #A7AAAA;
+
+		.avatar {
+			margin: 0px;
+			padding: 0px;
+
+			display: inline-block;
+
+			img {
+				margin: 0px;
+				padding: 0px;
+
+				border-radius: 3px 0 0 3px;
+				border-right: 1px solid #eee;
+			}
+		}
+
+		.credits {
+			display: inline-block;
+			vertical-align: top;
+
+			.name {
+				color: #333;
+				color: rgba(21,21,21,0.8);
+				text-shadow: 1px 2px 4px #fff,0 0 0 #000,0 1px 0 #fff;
+				font-size: 24px;
+				font-weight: 700;
+
+				padding: 10px;
+
+			}
+		}
+
+		.downlinks {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+
+			height: 15px;
+			width: 15px;
+
+			background-image: url(image-path("icons/edit.png"));
+		}
+
+	}
+
+	.right {
+		width: 300px;
+		height: 150px;
+
+		margin: 0px;
+
+		display: inline-block;
+		vertical-align: top;
+
+		background-color: #fff;
+
+		border-radius: 3px;
+
+		box-shadow: 0 0 3px #A7AAAA;			
+	}
+
+
+}
+
+#sectoreduserdata {
+	width: 1300px;
+
+	margin: 0 auto;
+
+	text-align: center;
+
+	#tabs-1 {
+		margin: 0px 0px 0px 0px;
+		padding: 0px 0px 0px 0px;
+	}
+	#tabs-2 {
+		margin: 0px 0px 0px 0px;
+		padding: 0px 0px 0px 0px;
+	}
+}
+
+#uinfobar {
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 20px;
+
+	text-align: left;
+
+	background: linear-gradient(#f3f3f3,#e5e5e5);
+	border-radius: 4px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.14);
+	background-color: #f3f3f3;
+	border-left: 1px solid #d4d4d4;
+	border-top: 1px solid rgba(0,0,0,0.1);
+	border-right: 1px solid rgba(0,0,0,0.17);
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	clear: both;
+	color: #333;
+	height: 44px;
+	line-height: 44px;
+	margin-bottom: 2px;
+	max-width: 10000px;
+
+	overflow: hidden;
+
+	padding: 0px 0px 0px 0px;
+
+	ul {
+		margin: 0px 0px 0px 0px;
+		padding: 0px 0px 0px 0px;
+
+		li {
+			margin: 0px 0px 0px -4px;
+			padding: 0px 0px 0px 0px;
+
+			display: inline-block;
+
+			border-right: 1px solid #ccc;
+
+			box-shadow: 0 0 1px rgba(255,255,255,0.9) inset;
+			color: #777;
+			font-weight: bold;
+			padding: 1px 20px 0;
+			text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+
+			a {
+				text-decoration: none;
+
+				color: #333;
+			}
+
+			&:hover {
+				background: linear-gradient(#ffffff,#f4f4f4);
+				background-color: #fff;
+				color: #333;
+			}
+
+		
+		}
+	}
+
+
+
+}
+

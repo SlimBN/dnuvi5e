@@ -1,0 +1,1 @@
+<%= link_to pun.likers(User).count.to_s, toggle_like_path(pun), :remote => true %><%= link_to (image_tag "icon/love2.png"), toggle_like_path(pun), :remote => true %>

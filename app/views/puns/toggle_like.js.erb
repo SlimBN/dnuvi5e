@@ -1,0 +1,6 @@
+// The Punaise Page
+$('.punbox .panel').html('<%= escape_javascript(render :partial => "puns/panel", :locals => {:pun => @pun}) %>');
+$('.punbox .pun-stats').html('<%= escape_javascript(render :partial => "puns/pun_stats", :locals => {:pun => @pun}) %>');
+
+// Tiles
+$('#pun-like-links #likescount-<%= @pun.id %>').html('<%= escape_javascript(render :partial => "homes/toplinks/likes_count", :locals => {:pun => @pun}) %>');
