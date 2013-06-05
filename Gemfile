@@ -29,6 +29,7 @@ gem 'will_paginate'
 gem 'friendly_id'#, :git => 'git@github.com:SlimBN/Slim-FriendlyUrl.git'
 
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -54,10 +55,10 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+ gem 'debugger'

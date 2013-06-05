@@ -1,0 +1,8 @@
+alert("tnekna");
+$('#header-title').html('<%= escape_javascript(render :partial => "puns/ajax/pun_title", :locals => {:pun => @pun}) %>');
+
+$('#header-description').html('<%= escape_javascript(render :partial => "puns/ajax/pun_description", :locals => {:pun => @pun}) %>');
+
+$('.product').html('<%= escape_javascript(render :partial => "puns/punshow_product_price", :locals => {:pun => @pun}) %>');
+
+$('.boardbloc').html('<%= escape_javascript(render :partial => "puns/punshow_right_grid", :locals => {:pun => @pun}) %>');

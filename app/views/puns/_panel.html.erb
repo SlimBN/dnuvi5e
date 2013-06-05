@@ -12,5 +12,7 @@
 	<%= link_to "Site Web", "http://" + @pun.link, :class => "weblink" %>
 
 <% if user_signed_in? and (@pun.user_id == current_user.id) %>
-	<%= link_to "Modifier", edit_pun_path(@pun), :class => "weblink" %>
+
+	<%= link_to "Modifier", "#modal-edit-" + @pun.id.to_s, :class => "weblink" %>
+
 <% end %>

@@ -1,11 +1,15 @@
 <!-- The punaise title -->
 <div id="header-title">
-  <%= @pun.title %>
+  
+  <%= render "puns/ajax/pun_title" %>
+
 </div>
 
 <!-- Description -->
 <div id="header-description">
-  " <%= @pun.description %> "
+
+  " <%= render "puns/ajax/pun_description" %> "
+
 </div>
 
 
@@ -30,9 +34,17 @@
 
   <div class="right">
 
-    <%= render "puns/punshow_product_price" %>
+    <% if (@pun.is_product == TRUE) %>
+    <div class="product">
+      <%= render "puns/punshow_product_price" %>
+    </div>
+    <% end %>
 
-    <%= render "puns/punshow_right_grid" %>
+    <div class="boardbloc">
+
+      <%= render "puns/punshow_right_grid" %>
+
+    </div>
 
     <%= render "puns/punshow_right_otherpuns" %>
     

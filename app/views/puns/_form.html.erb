@@ -52,7 +52,7 @@
   </div>
   <div class="field">
     Dans :<br />
-    <select id="pun_board_id" name="pun[board_id]">
+    <select id="pun_currency_id" name="pun[currency_id]">
       <% Currency.order("name ASC").each do |currency|  %>
         <option value="<%= currency.id %>"><%= currency.name %> </option>
       <% end %>

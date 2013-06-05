@@ -72,7 +72,9 @@ class PunsController < ApplicationController
     respond_to do |format|
       if @pun.update_attributes(params[:pun])
         format.html { redirect_to @pun, notice: 'Pun was successfully updated.' }
-        format.json { head :no_content }
+
+        #format.js { render :action => 'edit_pun' }
+
       else
         format.html { render action: "edit" }
         format.json { render json: @pun.errors, status: :unprocessable_entity }

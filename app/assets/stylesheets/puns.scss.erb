@@ -351,75 +351,85 @@
 
 			box-shadow: 0 0 3px #A7AAAA;
 
-			.comment {
-				position: relative;
-				
-				width: 720px;
+			.comments {
+				margin: 0px;
+				padding: 0px;
 
-				padding: 5px;
+				//max-height: 300px;
+				//overflow-y: scroll;
 
-				border-bottom: 1px solid #A7AAAA;
+				.comment {
+					position: relative;
+					
+					width: 720px;
 
-				font-family: "Helvetica Neue",arial,sans-serif;
+					padding: 5px;
 
-				.thumb {
-					display: inline-block;
+					border-bottom: 1px solid #A7AAAA;
 
-					line-height: 10px;
+					font-family: "Helvetica Neue",arial,sans-serif;
 
-					vertical-align: middle;
+					.thumb {
+						display: inline-block;
 
-					img {
-						border-radius: 3px;
-						border: 1px solid #A7AAAA;
+						line-height: 10px;
 
-						box-shadow: 0 0 3px #A7AAAA;
+						vertical-align: middle;
+
+						img {
+							border-radius: 3px;
+							border: 1px solid #A7AAAA;
+
+							box-shadow: 0 0 3px #A7AAAA;
+						}
+					}
+
+					.data {
+						display: inline-block;
+
+						vertical-align: top;
+
+						padding-left: 10px;
+
+						.user {
+							display: inline-block;
+							a {
+							font-weight: bold;
+							text-decoration: none;
+
+							-webkit-font-smoothing: antialiased;
+							color: #454545;
+							font-size: 16px;
+							}
+
+							.delete {
+								position: absolute;
+								top: 10px;
+								right: 10px;
+							}
+
+						}
+
+						.time {
+							display: inline-block;
+						}
+
+						.content {
+							max-width: 620px;
+							color: #171717;
+							font-size: 30px;
+							font-weight: normal;
+							line-height: 30px;
+							font-family: 'Snickles';
+
+							margin-top: 5px;
+							margin-left: 4px;
+						}
 					}
 				}
 
-				.data {
-					display: inline-block;
-
-					vertical-align: top;
-
-					padding-left: 10px;
-
-					.user {
-						display: inline-block;
-						a {
-						font-weight: bold;
-						text-decoration: none;
-
-						-webkit-font-smoothing: antialiased;
-						color: #454545;
-						font-size: 16px;
-						}
-
-						.delete {
-							position: absolute;
-							top: 10px;
-							right: 10px;
-						}
-
-					}
-
-					.time {
-						display: inline-block;
-					}
-
-					.content {
-						max-width: 620px;
-						color: #171717;
-						font-size: 30px;
-						font-weight: normal;
-						line-height: 30px;
-						font-family: 'Snickles';
-
-						margin-top: 5px;
-						margin-left: 4px;
-					}
-				}
 			}
+
 
 			.docomment {
 				width: 720px;

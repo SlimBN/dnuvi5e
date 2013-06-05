@@ -20,14 +20,14 @@
 
 </div>
 
-
+<!-- REPUN MODAL -->
 <aside id="modal-<%= @pun.id %>" class="modal">
     <div>
 
         <div id="modal-share-pun">
 
-        	<div class="topshow">
-        		<div class="shared-pun">
+            <div class="topshow">
+                <div class="shared-pun">
                     <%= image_tag @pun.image_url(:share).to_s %>
                 </div>
 
@@ -35,31 +35,31 @@
                     Par <%= image_tag @pun.user.avatar_url(:pundatathumb).to_s, :title => @pun.user.username %> sur 
 
                     <% Pun.where("board_id = ?", @pun.board).first(1).each do |boardthumb| %>
-                    	<%= image_tag boardthumb.image_url(:datathumb).to_s, :title => @pun.board.name %>
+                        <%= image_tag boardthumb.image_url(:datathumb).to_s, :title => @pun.board.name %>
                     <% end %>
                 </div>
-        	</div>
+            </div>
 
-        	<div class="forms">
-        		<%= form_for(Pun.new(params[:pun])) do |f| %>
-        		<div class="left">
-        			<%= f.text_field :title, :value => @pun.title %>
+            <div class="forms">
+                <%= form_for(Pun.new(params[:pun])) do |f| %>
+                <div class="left">
+                    <%= f.text_field :title, :value => @pun.title %>
 
-        			<%= f.text_field :description, :value => @pun.description %>
+                    <%= f.text_field :description, :value => @pun.description %>
 
-        		</div>
+                </div>
 
-        		<div class="right">
+                <div class="right">
                     <select id="pun_board_id" name="pun[board_id]">
-                       	<% Board.where("user_id = ?", current_user.id).each do |board|  %>
-                           	<option value="<%= board.id %>"><%= board.name %> </option>
-                       	<% end %>
+                        <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                            <option value="<%= board.id %>"><%= board.name %> </option>
+                        <% end %>
                     </select>
 
                     <%= link_to "Ajouter un Tableau", "#modal-new-board" %>
-        		</div>
+                </div>
 
-        		<%= f.hidden_field :remote_image_url, :value => "http://localhost:3000"+@pun.image_url.to_s %>
+                <%= f.hidden_field :remote_image_url, :value => "http://localhost:3000"+@pun.image_url.to_s %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
 
 
@@ -77,16 +77,107 @@
                 <%= f.hidden_field :link, :value => @pun.websource %>
 
                 <div id="actions">
-	                <input name="commit" type="submit" value="Clouer" />
+                    <input name="commit" type="submit" value="Clouer" />
                 </div>
 
-        		<% end %>
-        	</div>
+                <% end %>
+            </div>
                           
 
 
 
                 </div>
         <a href="#close" title="Close">Close</a>
+    </div>
+</aside> 
+
+
+
+
+
+<!-- EDITION MODAL -->
+<aside id="modal-edit-<%= @pun.id %>" class="modal">
+    <div>
+
+        <div id="modal-edit-pun">
+
+            <div id="header-description">
+                Modifier La Punaise
+            </div>
+
+            <%= form_for(@pun) do |f| %>
+
+                <div class="left">
+                    
+                    <div class="field">
+                        <div id="header-description" class="lefty">
+                            <%= f.label :title %>
+                        </div>
+                        
+                        <%= f.text_field :title, :value => @pun.title %>
+                    </div>
+
+
+                    <div class="field">
+                        <div id="header-description" class="lefty">
+                            <%= f.label :description %>
+                        </div>
+                        
+                        <%= f.text_area :description, :value => @pun.description %>
+                    </div>
+
+
+                    <div class="field">
+                        <div id="header-description" class="lefty">
+                            <%= f.label :link %>
+                        </div>
+                        
+                        <%= f.text_field :link, :value => @pun.link %>
+                    </div>
+
+                </div>
+
+
+                <div class="right">
+
+                    <div class="board-list">
+                        <%= f.label :board_id %><br />
+                        
+                        <%= render "puns/ajax/board_list" %>
+
+                    </div>
+
+                    <div class="field">
+                        <%= f.label :price %><br />
+                        <%= f.text_field :price, :value => @pun.price %>
+                    </div>
+
+                    <div class="field">
+                        <%= f.label :is_product %><br />
+                        <%= f.check_box :is_product, :value => @pun.is_product %>
+                    </div>
+
+                    <div class="currency">
+                        Dans :<br />
+                        <select id="pun_currency_id" name="pun[currency_id]" value="1">
+                          <% Currency.order("name ASC").each do |currency|  %>
+                            <option value="<%= currency.id %>"><%= currency.name %> </option>
+                          <% end %>
+                        </select>
+                    </div>
+
+                    <div class="actions">
+                        <%= f.submit %>
+                    </div>
+
+                </div>
+
+            <% end %>
+
+
+        </div>
+
+        <a href="#close" title="Close">Close</a>
+
     </div>
 </aside> 

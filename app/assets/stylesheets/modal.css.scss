@@ -120,9 +120,10 @@
 /* Modal close link */
 .modal a[href="#close"] {
     position: absolute;
-    right: 11px;
+    right: 10px;
     top: 0;
     color: transparent;
+
 }
 
 /* Reset native styles */
@@ -156,8 +157,7 @@
 
     .modal a[href="#close"]:focus:after,
     .modal a[href="#close"]:hover:after {
-    -webkit-transform: scale(1.1,1.1);
-    -moz-transform: scale(1.1,1.1);
+
 }
 
 .modal a[href="#close"]:focus:after {
