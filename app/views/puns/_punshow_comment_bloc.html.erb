@@ -45,15 +45,17 @@
 
           <div class="textarea">
             <%= form_for(Comment.new(params[:comment]), :remote => true) do |f| %>
-          <%= f.text_area :content, :placeholder => "Commentez et Argumentez..." %>
+          
+              <%= f.text_area :content, :placeholder => "Commentez et Argumentez..." %>
 
-            <%= f.hidden_field :pun_id, :value => @pun.id %>
-                <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.hidden_field :pun_id, :value => @pun.id %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
 
-            <div class="actions">
-                <input name="commit" type="submit" value="Repondre" />
-            </div>
-              <% end %> 
+              <div class="actions">
+                  <input name="commit" type="submit" value="Repondre" />
+              </div>
+            
+            <% end %> 
           </div>
         </div>
 

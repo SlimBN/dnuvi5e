@@ -41,6 +41,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
+    @pun = @comment.pun
 
     respond_to do |format|
       if @comment.save
@@ -48,8 +49,7 @@ class CommentsController < ApplicationController
         #respond_with @comment, :location => pun_url(@comment.pun)
         #format.html { redirect_to pun_url(@comment.pun), notice: 'Comment was successfully created.' }
         #format.json { render json: @comment, status: :created, location: @comment }
-        format.js { render :action => 'create', :locals => { :pun => @comment.pun } }
-
+        format.js { render :action => '../puns/comment'  }
       else
         format.html { render action: "new" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -81,7 +81,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to pun_path() }
+      format.html { redirect_to comments_path() }
       format.json { head :no_content }
     end
   end
