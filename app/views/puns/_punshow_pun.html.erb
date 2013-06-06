@@ -111,7 +111,7 @@
                     
                     <div class="field">
                         <div id="header-description" class="lefty">
-                            <%= f.label :title %>
+                            Titre
                         </div>
                         
                         <%= f.text_field :title, :value => @pun.title %>
@@ -120,7 +120,7 @@
 
                     <div class="field">
                         <div id="header-description" class="lefty">
-                            <%= f.label :description %>
+                            Description
                         </div>
                         
                         <%= f.text_area :description, :value => @pun.description %>
@@ -129,7 +129,7 @@
 
                     <div class="field">
                         <div id="header-description" class="lefty">
-                            <%= f.label :link %>
+                                Lien vers
                         </div>
                         
                         <%= f.text_field :link, :value => @pun.link %>
@@ -141,24 +141,36 @@
                 <div class="right">
 
                     <div class="board-list">
-                        <%= f.label :board_id %><br />
+                        <div id="header-description" class="righty">
+                            <%= f.label :board_id %>
+                        </div>
                         
                         <%= render "puns/ajax/board_list" %>
 
                     </div>
 
                     <div class="field">
-                        <%= f.label :price %><br />
+                        <div id="header-description" class="righty">
+                            <%= f.label :price %>
+
+                        </div>
+
                         <%= f.text_field :price, :value => @pun.price %>
                     </div>
 
                     <div class="field">
-                        <%= f.label :is_product %><br />
+                        <div id="header-description" class="righty">
+                            <%= f.label :is_product %>
+                        </div>
+
                         <%= f.check_box :is_product, :value => @pun.is_product %>
                     </div>
 
                     <div class="currency">
-                        Dans :<br />
+                        <div id="header-description" class="righty">                     
+                            Dans :
+                        
+                        </div>
                         <select id="pun_currency_id" name="pun[currency_id]" value="1">
                           <% Currency.order("name ASC").each do |currency|  %>
                             <option value="<%= currency.id %>"><%= currency.name %> </option>

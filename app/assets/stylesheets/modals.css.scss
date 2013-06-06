@@ -293,14 +293,14 @@
 
 
 #modal-edit-pun {
-	width: 600px;
+	width: 700px;
 	margin: 0px auto;
 	padding: 0px;
 
 	text-align: center;
 
 	.left {
-		max-width: 280px;
+		max-width: 330px;
 
 		margin: 0px;
 		padding: 0px;
@@ -312,7 +312,7 @@
 		.field {
 			margin: 10px;
 
-			input, textarea, select {
+			input, textarea {
 				@include formstyle(250px);
 			}
 
@@ -333,7 +333,7 @@
 	}
 
 	.right {
-		max-width: 280px;
+		max-width: 330px;
 
 		margin: 0px;
 		padding: 0px;
@@ -341,14 +341,24 @@
 		text-align: right;
 
 		display: inline-block;
+		vertical-align: top;
 
-		.field {
-			input, textarea {
+		.field, .board-list, .currency {
+			margin: 10px;
+
+			input, textarea, select {
 				@include formstyle(250px);
 			}
 
 			textarea {
 				height: 150px;
+			}
+
+
+			.righty {
+				text-align: left;
+
+				margin: 10px;
 			}
 
 		}
