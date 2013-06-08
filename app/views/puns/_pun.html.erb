@@ -1,0 +1,213 @@
+
+
+      <li class="tile">
+
+                <!-- La Punaise Elle meme -->
+                <div class="lapunaise">
+
+                  <%= link_to (image_tag pun.image_url(:grid).to_s), pun_path(pun) %>
+
+                  <div id="pun-like-links">
+                    <div class="top-link" id="punscount-<%= pun.id %>"><a href="#modal-<%= pun.id %>"><%= Pun.where("original_punaise_id = ?", pun.original_punaise_id).count + 1 %> <%= image_tag "icon/punaise2.png" %></a></div>
+                    <div class="top-link" id="likescount-<%= pun.id %>"> <%= link_to pun.likers(User).count.to_s, toggle_like_path(pun), :remote => true %><%= link_to (image_tag "icon/love2.png"), toggle_like_path(pun), :remote => true %></div>
+                  </div>
+
+                </div>
+
+                <!-- La description -->
+                <% unless pun.description.nil? %>
+                <div class="description">
+                  <%= pun.description %>
+                </div>
+                <% end %>
+
+                <ul class="pundatas">
+                  <li class="pundata" %>
+                    <div class="thumb">
+                      <%= image_tag pun.user.avatar_url(:pundatathumb).to_s %>
+                    </div>
+
+                    <div class="data">
+                      <div class="by">
+                        par
+                      </div>
+                      <div class="user">
+                        <%= link_to pun.user.username, user_path(pun.user) %>
+                      </div>
+                    </div>
+                  </li>
+                  
+
+                  <!-- PUNNED ON -->
+                  <li class="punboard">
+                    <div class="boardthumb">
+                      <% Pun.where("board_id = ?", pun.board_id).first(1).each do |boardthumb| %>
+                        <%= link_to (image_tag boardthumb.image_url(:boardthumb).to_s), board_path(boardthumb.board) %>
+                      <% end %>
+                    </div>
+
+                    <div class="punnedondata">
+                      <div class="punnedon">
+                        Clouée sur
+                      </div>
+                      <div class="board">
+
+                        <%= link_to (pun.board.name), board_path(pun.board) %>
+
+
+                      </div>
+                    </div>
+
+                  </li>
+
+                  
+
+                  <!-- ORIGINALLY PUNNED ON -->
+                  <% unless pun.original_board_id.nil? %>
+                  <li class="punboard">
+                    <div class="boardthumb">
+                      <% Pun.where("board_id = ?", pun.original_board_id).first(1).each do |boardthumb| %>
+                        <%= link_to (image_tag boardthumb.image_url(:boardthumb).to_s), board_path(boardthumb.board) %>
+                      <% end %>
+                    </div>
+
+                    <div class="punnedondata">
+                      <div class="punnedon">
+                        Originellement sur
+                      </div>
+                      <div class="board">
+                        <% Board.where("id = ?", pun.original_board_id).first(1).each do |board| %>
+                        <%= link_to (board.name), board_path(board) %>
+                        <% end %>
+
+
+                      </div>
+                    </div>
+
+                  </li>
+                  <% end %>
+
+
+                </ul>
+
+
+              
+    <aside id="modal-<%= pun.id %>" class="modal">
+        <div>
+
+            <div id="modal-share-pun">
+
+
+
+              <div class="forms">
+                <%= form_for(Pun.new(params[:pun]), :remote => true) do |f| %>
+                <div class="left">
+
+
+	                <select id="pun_board_id" name="pun[board_id]">
+	                    <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+	                        <option value="<%= board.id %>"><%= board.name %> </option>
+	                    <% end %>
+	                </select>
+
+                    <%= link_to "Ajouter un Tableau", "#modal-new-board" %>
+
+                  	<%= f.text_field :description, :value => pun.description %>
+
+                </div>
+
+                <div class="right">
+
+	              	<div class="topshow">
+		                <div class="shared-pun">
+		                        <%= image_tag pun.image_url(:share).to_s %>
+		                </div>
+
+		                <div class="thumbs">
+		                    <div class="data">
+		                        Par <%= image_tag pun.user.avatar_url(:pundatathumb).to_s, :title => pun.user.username %> sur 
+
+			                    <% Pun.where("board_id = ?", pun.board).first(1).each do |boardthumb| %>
+			                        <%= image_tag boardthumb.image_url(:datathumb).to_s, :title => pun.board.name %>
+			                    <% end %>
+		                	</div>
+		                        
+		                </div>
+		            </div>
+
+                </div>
+
+                <%= f.hidden_field :remote_image_url, :value => "http://localhost:3000"+pun.image_url.to_s %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+
+                    <% if pun.original_board_id.nil? %>
+                        <%= f.hidden_field :original_board_id, :value => pun.board_id %>
+                        <%= f.hidden_field :original_punaise_id, :value => pun.id %>
+                        <%= f.hidden_field :original_user_id, :value => pun.user_id %>
+                    <% else %>
+                        <%= f.hidden_field :original_board_id, :value => pun.original_board_id %>
+                        <%= f.hidden_field :original_punaise_id, :value => pun.original_punaise_id %>
+                        <%= f.hidden_field :original_user_id, :value => pun.original_user_id %>
+                    <% end %>
+
+                    <%= f.hidden_field :websource, :value => pun.websource %>
+                    <%= f.hidden_field :link, :value => pun.websource %>
+                    <%= f.hidden_field :title, :value => pun.title %>
+
+                    <div id="actions">
+                      <input name="commit" type="submit" value="Clouer" />
+                    </div>
+
+                <% end %>
+              </div>
+                              
+
+
+
+                    </div>
+            <a href="#close" title="Close">Close</a>
+        </div>
+    </aside> 
+
+      </li>
+
+
+
+
+
+
+
+    
+
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(new function() {
+      // Prepare layout options.
+      var options = {
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('#tiles'), // Optional, used for some extra CSS styling
+        offset: 10, // Optional, the distance between grid items
+        itemWidth: 235 // Optional, the width of a grid item
+      };
+
+      // Get a reference to your grid items.
+      var handler = $('#tiles .tile');
+
+      // Call the layout function.
+      handler.wookmark(options);
+
+      $('#tiles .tile').imagesLoaded(function() {
+		  // do stuff after images are loaded
+		  handler.wookmark(options);
+		});
+
+
+
+      $('#punslist').trigger('refreshWookmark');
+
+    });
+  </script>

@@ -3,11 +3,11 @@ class HomesController < ApplicationController
   # GET /homes.json
   def index
     @homes = Home.all
-    @puns = Pun.order("created_at").all#.page(params[:page]).per_page(5)
+    @puns = Pun.order("created_at DESC").page(params[:page]).per_page(5)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @homes }
+      format.js { render :action => 'index' }
     end
   end
 

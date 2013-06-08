@@ -3,3 +3,4 @@ $('#commentaires .commentsbloc').html('<%= escape_javascript(render :partial => 
 
 $('.punbox .pun-stats').html('<%= escape_javascript(render :partial => "puns/pun_stats", :locals => {:pun => @pun}) %>');
 
+$('#comment_content').val('');
