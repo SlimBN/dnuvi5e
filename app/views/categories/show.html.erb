@@ -4,10 +4,11 @@
 
 <div id="punslist">
     
-    <div id="tiles">
-        <% Pun.where("category_id = ?", @category.id).order("created_at DESC").last(20).each do |pun| %>
+  <div id="tiles">
+    <% @puns.each do |pun| %>
 
-            <li class="tile">
+      <li class="tile">
+
 
                 <!-- La Punaise Elle meme -->
                 <div class="lapunaise">
@@ -15,7 +16,8 @@
                   <%= link_to (image_tag pun.image_url(:grid).to_s), pun_path(pun) %>
 
                   <div id="pun-like-links">
-                    <div class="link"><a href="#modal-<%= pun.id %>"><%= image_tag "icon/punaise.png" %> Pun</a></div>
+                    <div class="top-link" id="punscount-<%= pun.id %>"><a href="#modal-<%= pun.id %>"><%= Pun.where("original_punaise_id = ?", pun.original_punaise_id).count + 1 %> <%= image_tag "icon/punaise2.png" %></a></div>
+                    <div class="top-link" id="likescount-<%= pun.id %>"> <%= link_to pun.likers(User).count.to_s, toggle_like_path(pun), :remote => true %><%= link_to (image_tag "icon/love2.png"), toggle_like_path(pun), :remote => true %></div>
                   </div>
 
                 </div>
@@ -23,25 +25,25 @@
                 <!-- La description -->
                 <% unless pun.description.nil? %>
                 <div class="description">
-                	<%= pun.description %>
+                  <%= pun.description %>
                 </div>
                 <% end %>
 
                 <ul class="pundatas">
-                	<li class="pundata" %>
-                		<div class="thumb">
-                			<%= image_tag pun.user.avatar_url(:pundatathumb).to_s %>
-                		</div>
+                  <li class="pundata" %>
+                    <div class="thumb">
+                      <%= image_tag pun.user.avatar_url(:pundatathumb).to_s %>
+                    </div>
 
-                		<div class="data">
-                			<div class="by">
-                				par
-                			</div>
-                			<div class="user">
-                				<%= link_to pun.user.username, user_path(pun.user) %>
-                			</div>
-                		</div>
-                	</li>
+                    <div class="data">
+                      <div class="by">
+                        par
+                      </div>
+                      <div class="user">
+                        <%= link_to pun.user.username, user_path(pun.user) %>
+                      </div>
+                    </div>
+                  </li>
                   
 
                   <!-- PUNNED ON -->
@@ -98,80 +100,116 @@
 
 
               
-<aside id="modal-<%= pun.id %>" class="modal">
-    <div>
+    <aside id="modal-<%= pun.id %>" class="modal">
+        <div>
 
-        <div id="modal-share-pun">
+            <div id="modal-share-pun">
 
-          <div class="topshow">
-            <div class="shared-pun">
-                    <%= image_tag pun.image_url(:share).to_s %>
+
+
+              <div class="forms">
+                <%= form_for(Pun.new(params[:pun]), :remote => true) do |f| %>
+                <div class="left">
+
+                  <div class="field">
+                    <div class="label">
+                      Tableau
+                    </div>
+                    <div class="input">
+                      <select id="pun_board_id" name="pun[board_id]">
+                          <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                              <option value="<%= board.id %>"><%= board.name %> </option>
+                          <% end %>
+                      </select>                    
+                    </div>                    
+                  </div>
+
+
+
+
+                  <div class="field">
+                    
+                    <div class="label">
+                      Description
+                    </div>
+                    <div class="input">
+                      <%= f.text_area :description, :value => pun.description %>
+                    </div>
+
+                  </div>
+
+
+                  <div class="field">
+                    
+                    <div class="label">
+                      
+                    </div>
+                    <div class="input">
+                      <%= link_to "Ajouter un Tableau", "#modal-new-board" %>
+                    </div>
+
+                  </div>
+
+                   
+
+                    
+
                 </div>
 
-                <div class="thumbs">
-                    Par <%= image_tag pun.user.avatar_url(:pundatathumb).to_s, :title => pun.user.username %> sur 
+                <div class="right">
 
-                    <% Pun.where("board_id = ?", pun.board).first(1).each do |boardthumb| %>
-                      <%= image_tag boardthumb.image_url(:datathumb).to_s, :title => pun.board.name %>
+                  <div class="rightshow">
+                    <div class="shared-pun">
+                            <%= image_tag pun.image_url(:share).to_s %>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <%= f.hidden_field :remote_image_url, :value => "http://localhost:3000"+pun.image_url.to_s %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+
+                    <% if pun.original_board_id.nil? %>
+                        <%= f.hidden_field :original_board_id, :value => pun.board_id %>
+                        <%= f.hidden_field :original_punaise_id, :value => pun.id %>
+                        <%= f.hidden_field :original_user_id, :value => pun.user_id %>
+                    <% else %>
+                        <%= f.hidden_field :original_board_id, :value => pun.original_board_id %>
+                        <%= f.hidden_field :original_punaise_id, :value => pun.original_punaise_id %>
+                        <%= f.hidden_field :original_user_id, :value => pun.original_user_id %>
                     <% end %>
-                </div>
-          </div>
 
-          <div class="forms">
-            <%= form_for(Pun.new(params[:pun])) do |f| %>
-            <div class="left">
-              <%= f.text_field :title, :value => pun.title %>
+                    <%= f.hidden_field :websource, :value => pun.websource %>
+                    <%= f.hidden_field :link, :value => pun.websource %>
+                    <%= f.hidden_field :title, :value => pun.title %>
+                    <%= f.hidden_field :category_id, :value => pun.category_id %>
 
-              <%= f.text_field :description, :value => pun.description %>
+                    <div id="actions">
+                      <input name="commit" type="submit" value="Clouer" />
+                    </div>
 
-            </div>
-
-            <div class="right">
-                    <select id="pun_board_id" name="pun[board_id]">
-                        <% Board.where("user_id = ?", current_user.id).each do |board|  %>
-                            <option value="<%= board.id %>"><%= board.name %> </option>
-                        <% end %>
-                    </select>
-
-                    <%= link_to "Ajouter un Tableau", "#modal-new-board" %>
-            </div>
-
-            <%= f.hidden_field :remote_image_url, :value => "http://localhost:3000"+pun.image_url.to_s %>
-                <%= f.hidden_field :user_id, :value => current_user.id %>
-
-
-                <% if pun.original_board_id.nil? %>
-                    <%= f.hidden_field :original_board_id, :value => pun.board_id %>
-                    <%= f.hidden_field :original_punaise_id, :value => pun.id %>
-                    <%= f.hidden_field :original_user_id, :value => pun.user_id %>
-                <% else %>
-                    <%= f.hidden_field :original_board_id, :value => pun.original_board_id %>
-                    <%= f.hidden_field :original_punaise_id, :value => pun.original_punaise_id %>
-                    <%= f.hidden_field :original_user_id, :value => pun.original_user_id %>
                 <% end %>
-
-                <%= f.hidden_field :websource, :value => pun.websource %>
-                <%= f.hidden_field :link, :value => pun.websource %>
-
-                <div id="actions">
-                  <input name="commit" type="submit" value="Clouer" />
-                </div>
-
-            <% end %>
-          </div>
-                          
+              </div>
+                              
 
 
 
-                </div>
-        <a href="#close" title="Close">Close</a>
-    </div>
-</aside> 
+                    </div>
+            <a href="#close" title="Close">Close</a>
+        </div>
+    </aside> 
 
-            </li>
+      </li>
+
+
         <% end %>
     </div>
 </div>
+
+
+<%= will_paginate(@puns) %>
 
 
 

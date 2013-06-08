@@ -1,0 +1,7 @@
+$("#tiles").append('<%= j render(@puns) %>');
+<% if @puns.next_page %>
+	$('.pagination').replaceWith('<%= j will_paginate(@puns) %>');
+<% else %>
+	$('.pagination').remove();
+<% end %>
+<% sleep 2 %>

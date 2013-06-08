@@ -133,7 +133,19 @@
 
                   </div>
 
-                    <%= link_to "Ajouter un Tableau", "#modal-new-board" %>
+
+                  <div class="field">
+                    
+                    <div class="label">
+                      
+                    </div>
+                    <div class="input">
+                      <%= link_to "Ajouter un Tableau", "#modal-new-board" %>
+                    </div>
+
+                  </div>
+
+                   
 
                     
 
@@ -167,6 +179,7 @@
                     <%= f.hidden_field :websource, :value => pun.websource %>
                     <%= f.hidden_field :link, :value => pun.websource %>
                     <%= f.hidden_field :title, :value => pun.title %>
+                    <%= f.hidden_field :category_id, :value => pun.category_id %>
 
                     <div id="actions">
                       <input name="commit" type="submit" value="Clouer" />

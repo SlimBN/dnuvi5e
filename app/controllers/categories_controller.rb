@@ -14,10 +14,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
+    @puns = Pun.where("category_id = ?", @category.id).order("created_at DESC").page(params[:page]).per_page(10)
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @category }
+      format.js { render :action => 'more' }
     end
   end
 
