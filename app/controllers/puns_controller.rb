@@ -57,7 +57,7 @@ class PunsController < ApplicationController
     respond_to do |format|
       if @pun.save
         format.html { redirect_to @pun, notice: 'Pun was successfully created.' }
-        format.json { render :action => 'bgajax/prepend', location: @pun }
+        #format.json { render :action => 'bgajax/prepend', location: @pun }
       else
         format.html { render action: "new" }
         format.json { render json: @pun.errors, status: :unprocessable_entity }

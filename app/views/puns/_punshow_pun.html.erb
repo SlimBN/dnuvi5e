@@ -23,44 +23,74 @@
 <!-- REPUN MODAL -->
 <% if user_signed_in? %>
 
-<aside id="modal-<%= @pun.id %>" class="modal">
-    <div>
+<div id="modal-<%= @pun.id %>" class="modal">
 
         <div id="modal-share-pun">
 
-            <div class="topshow">
-                <div class="shared-pun">
-                    <%= image_tag @pun.image_url(:share).to_s %>
-                </div>
-
-                <div class="thumbs">
-                    Par <%= image_tag @pun.user.avatar_url(:pundatathumb).to_s, :title => @pun.user.username %> sur 
-
-                    <% Pun.where("board_id = ?", @pun.board).first(1).each do |boardthumb| %>
-                        <%= image_tag boardthumb.image_url(:datathumb).to_s, :title => @pun.board.name %>
-                    <% end %>
-                </div>
+            <div class="header">
+                Partager La Punaise
             </div>
 
-            <div class="forms">
-                <%= form_for(Pun.new(params[:pun])) do |f| %>
+
+            <%= form_for(Pun.new(params[:pun])) do |f| %>
+            <div class="formsblock">
+                
                 <div class="left">
 
-                    <%= f.text_field :description, :value => @pun.description %>
+
+                    <div class="field">
+                        <div class="label">
+                            Description:
+                        </div>
+
+                        <div class="input">
+                            <%= f.text_area :description, :value => @pun.description %>
+                        </div>
+                    </div>
+
+
+
+                    <div class="field">
+                        <div class="label">
+                            Sur Quel Tableau Va Votre Punaise:
+                        </div>
+
+                        <div class="input">
+                            <select id="pun_board_id" name="pun[board_id]" value="<%= @pun.board_id %>">
+                                <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                                    <option value="<%= board.id %>"><%= board.name %> </option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="fieldbutton">
+                        <div class="label">
+                            
+                        </div>
+
+                        <div class="input">
+                            <%= link_to "Ajouter un Tableau", "#modal-new-board", :rel => "modal:open" %>
+                        </div>
+                    </div>
+
 
                 </div>
 
                 <div class="right">
-                    <select id="pun_board_id" name="pun[board_id]">
-                        <% Board.where("user_id = ?", current_user.id).each do |board|  %>
-                            <option value="<%= board.id %>"><%= board.name %> </option>
-                        <% end %>
-                    </select>
 
-                    <%= link_to "Ajouter un Tableau", "#modal-new-board" %>
+                    <div class="shared-pun">
+                        <%= image_tag @pun.image_url(:share).to_s %>
+                    </div>
+                        
                 </div>
 
-                <%= f.hidden_field :remote_image_url, :value => "http://localhost:3000"+@pun.image_url.to_s %>
+            </div>
+
+
+
+                <%= f.hidden_field :remote_image_url, :value => "http://localhost:8080"+@pun.image_url.to_s %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
 
 
@@ -77,20 +107,18 @@
                 <%= f.hidden_field :websource, :value => @pun.websource %>
                 <%= f.hidden_field :link, :value => @pun.websource %>
 
-                <div id="actions">
-                    <input name="commit" type="submit" value="Clouer" />
-                </div>
-
-                <% end %>
+            <div id="actions">
+                <input name="commit" type="submit" value="Clouer" />
             </div>
+
+
                           
+            <% end %>
 
 
+        </div>
 
-                </div>
-        <a href="#close" title="Close">Close</a>
-    </div>
-</aside> 
+</div> 
 
 <% end %>
 

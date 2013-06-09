@@ -70,8 +70,8 @@ Country.create ([{ :name => "Tunisie", :slug => "tunisia"},
 
 
 
-Currency.create ([{ :name => "Dinar Tunisie", :symbol => "TND"},
-				{ :name => "Euro", :symbol => "€"},
-				{ :name => "USA", :symbol => "$"}])
+Currency.create ([{ :name => "Dinar Tunisien", :symbol => "TND"},
+				{ :name => "Euro", :symbol => "Euro"},
+				{ :name => "Dollars USA", :symbol => "Dollars"}])
 
 

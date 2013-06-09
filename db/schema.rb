@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130602132904) do
 
   create_table "currencies", :force => true do |t|
     t.string   "name"
+    t.string   "symbol"
     t.boolean  "is_enabled"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
