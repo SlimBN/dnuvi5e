@@ -63,6 +63,15 @@ State.create ([{ :name => "Ariana", :slug => "ariana", :country_id => 1},
 				{ :name => "Zaghouan", :slug => "zaghouan", :country_id => 1}])
 
 
-State.create ([{ :name => "Tunisie", :slug => "tunisia"},
+Country.create ([{ :name => "Tunisie", :slug => "tunisia"},
 				{ :name => "France", :slug => "france"},
 				{ :name => "USA", :slug => "usa"}])
+
+
+
+
+Currency.create ([{ :name => "Dinar Tunisie", :symbol => "TND"},
+				{ :name => "Euro", :symbol => "€"},
+				{ :name => "USA", :symbol => "$"}])
+
+

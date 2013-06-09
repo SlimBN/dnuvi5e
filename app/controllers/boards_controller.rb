@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_filter :authenticate_user!, only: [:create, :toggle_follow, :update, :destroy, :edit]
   # GET /boards
   # GET /boards.json
 

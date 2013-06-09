@@ -21,6 +21,8 @@
 </div>
 
 <!-- REPUN MODAL -->
+<% if user_signed_in? %>
+
 <aside id="modal-<%= @pun.id %>" class="modal">
     <div>
 
@@ -43,7 +45,6 @@
             <div class="forms">
                 <%= form_for(Pun.new(params[:pun])) do |f| %>
                 <div class="left">
-                    <%= f.text_field :title, :value => @pun.title %>
 
                     <%= f.text_field :description, :value => @pun.description %>
 
@@ -91,105 +92,134 @@
     </div>
 </aside> 
 
+<% end %>
+
 
 
 
 
 <!-- EDITION MODAL -->
-<aside id="modal-edit-<%= @pun.id %>" class="modal">
-    <div>
+<% if user_signed_in? %>
+
+<div id="modal-edit-<%= @pun.id %>" class="modal">
 
         <div id="modal-edit-pun">
 
-            <div id="header-description">
+            <div class="header">
                 Modifier La Punaise
             </div>
 
             <%= form_for(@pun) do |f| %>
 
-                <div class="left">
-                    
+                <div class="formsblock">
+
                     <div class="field">
-                        <div id="header-description" class="lefty">
-                            Titre
+                        <div class="label">
+                            Source:
                         </div>
-                        
-                        <%= f.text_field :title, :value => @pun.title %>
+
+                        <div class="input">
+                            <%= f.text_field :link, :value => @pun.link %>
+                        </div>
+                    </div>
+
+
+
+                    <div class="field">
+                        <div class="label">
+                            Description:
+                        </div>
+
+                        <div class="input">
+                            <%= f.text_area :description, :value => @pun.description %>
+                        </div>
+                    </div>
+
+
+
+                    <div class="field">
+                        <div class="label">
+                            Sur Quel Tableau Va Votre Punaise:
+                        </div>
+
+                        <div class="input">
+                            <select id="pun_board_id" name="pun[board_id]" value="<%= @pun.board_id %>">
+                                <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                                    <option value="<%= board.id %>"><%= board.name %> </option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="fieldbutton">
+                        <div class="label">
+                            
+                        </div>
+
+                        <div class="input">
+                            <%= link_to "Ajouter un Tableau", "#modal-new-board", :rel => "modal:open" %>
+                        </div>
                     </div>
 
 
                     <div class="field">
-                        <div id="header-description" class="lefty">
-                            Description
+                        <div class="label">
+                            Categorie:
                         </div>
-                        
-                        <%= f.text_area :description, :value => @pun.description %>
+
+                        <div class="input">
+                            <select id="pun_board_id" name="pun[category_id]" value="<%= @pun.category_id %>">
+                                <% Category.order("name ASC").each do |category|  %>
+                                    <option value="<%= category.id %>"><%= category.name %> </option>
+                                <% end %>
+                            </select>
+                        </div>
                     </div>
 
 
                     <div class="field">
-                        <div id="header-description" class="lefty">
-                                Lien vers
+                        <div class="label">
+                            Est à Vendre:
                         </div>
-                        
-                        <%= f.text_field :link, :value => @pun.link %>
+
+                        <div class="input">
+                            <%= f.text_field :price, :placeholder => "Laisser vide sinon..." %>
+                        </div>
                     </div>
+
+
+                    <div class="field">
+                        <div class="label">
+                            Quel Devise:
+                        </div>
+
+                        <div class="input">
+                            <select id="pun_currency_id" name="pun[currency_id]" value="1">
+                                <% Currency.order("name ASC").each do |currency|  %>
+                                    <option value="<%= currency.id %>"><%= currency.name %> </option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+
 
                 </div>
 
 
-                <div class="right">
 
-                    <div class="board-list">
-                        <div id="header-description" class="righty">
-                            <%= f.label :board_id %>
-                        </div>
-                        
-                        <%= render "puns/ajax/board_list" %>
-
-                    </div>
-
-                    <div class="field">
-                        <div id="header-description" class="righty">
-                            <%= f.label :price %>
-
-                        </div>
-
-                        <%= f.text_field :price, :value => @pun.price %>
-                    </div>
-
-                    <div class="field">
-                        <div id="header-description" class="righty">
-                            <%= f.label :is_product %>
-                        </div>
-
-                        <%= f.check_box :is_product, :value => @pun.is_product %>
-                    </div>
-
-                    <div class="currency">
-                        <div id="header-description" class="righty">                     
-                            Dans :
-                        
-                        </div>
-                        <select id="pun_currency_id" name="pun[currency_id]" value="1">
-                          <% Currency.order("name ASC").each do |currency|  %>
-                            <option value="<%= currency.id %>"><%= currency.name %> </option>
-                          <% end %>
-                        </select>
-                    </div>
-
-                    <div class="actions">
-                        <%= f.submit %>
-                    </div>
-
+                <div id="actions">
+                    <input name="commit" type="submit" value="Mettre à Jour" />
                 </div>
+
+
+
 
             <% end %>
 
-
-        </div>
-
-        <a href="#close" title="Close">Close</a>
-
     </div>
-</aside> 
+</div> 
+
+<% end %>
+

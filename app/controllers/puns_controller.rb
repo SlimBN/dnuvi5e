@@ -1,4 +1,5 @@
 class PunsController < ApplicationController
+  before_filter :authenticate_user!, only: [:create, :update, :destroy, :edit]
   # GET /puns
   # GET /puns.json
   def index

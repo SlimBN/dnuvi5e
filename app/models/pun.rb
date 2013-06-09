@@ -1,8 +1,8 @@
 class Pun < ActiveRecord::Base
-  attr_accessible :board_id, :category_id, :image, :remote_image_url, :slug, :link, :description, :is_deleted, :original_board_id, :original_punaise_id, :original_user_id, :title, :user_id, :price, :is_product, :currency_id, :websource
+  attr_accessible :board_id, :category_id, :image, :remote_image_url, :slug, :link, :description, :is_deleted, :original_board_id, :original_punaise_id, :original_user_id, :user_id, :price, :is_product, :currency_id, :websource
 
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :description, use: :slugged
 
   acts_as_likeable
 

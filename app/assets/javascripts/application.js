@@ -17,6 +17,8 @@
 
 $(function() {
     $( "#sectoreduserdata" ).tabs();
+
+    $(".modal").easyModal();
 });
 
 

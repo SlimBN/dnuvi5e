@@ -1,33 +1,46 @@
-<aside id="modal-new-board" class="modal">
-	<div>
-		
-	    <div id="#new-board">
+<div id="modal-new-board" class="modal">
+
+        		<div class="header">
+        			Nouveau Tableau
+        		</div>
+
 	        <%= form_for(Board.new(params[:board])) do |f| %>
 
-				<div class="field">
-					<div class="label">Nom du tableau</div>
+          		<div class="formsblock">
+          			<div class="field">
+						<div class="label">
+							Nom du tableau:
+						</div>
 					
-					<div class="form"><%= f.text_field :name %></div>
-				</div>
-				
-				<div class="field">
-					<div class="label">Description</div>
-					<div class="form"><%= f.text_area :description %></div>
-				</div>
+						<div class="input">
+							<%= f.text_field :name %>
+						</div>
+          			</div>
+
+
+
+          			<div class="field">
+          				<div class="label">
+          					Description:
+          				</div>
+
+          				<div class="input">
+          					<%= f.text_area :description %>
+          				</div>
+          			</div>
+
+
+          		</div>
+
 
 				<%= f.hidden_field :user_id, :value => current_user.id %>
 				<%= f.hidden_field :cover_id %>
 		  
 				<div id="actions">
-					<input name="commit" type="submit" value="Clouer" />
+					<input name="commit" type="submit" value="Accrocher" />
 				</div>
 
 			<% end %>
 
-			<a href="#close" title="Close">Close</a>
 
-	    </div>
-
-	</div>
-
-</aside>
+</div>

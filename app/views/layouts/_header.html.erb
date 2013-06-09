@@ -11,7 +11,7 @@
 
 	<div class="three">
 		<% if user_signed_in? %>
-			<div class="addpun"><%= link_to (image_tag "icons/pun.png"), "#modal-new-pun" %></div>
+			<div class="addpun"><%= link_to (image_tag "icons/pun.png"), "#modal-new-pun", :rel => "modal:open" %></div>
 
 			<div id="upanellink">
 				<div class="userlink">
@@ -25,8 +25,8 @@
 
 				<div id="uoptions">
 					<ul>
-						<li><%= link_to "Nouvelle Punaise", "#modal-new-pun" %></li>
-						<li><%= link_to "Nouveau Tableau", "#modal-new-board" %></li>
+						<li><%= link_to "Nouvelle Punaise", "#modal-new-pun", :rel => "modal:open" %></li>
+						<li><%= link_to "Nouveau Tableau", "#modal-new-board", :rel => "modal:open" %></li>
 						<li><%= link_to "Mes Punaises", user_path(current_user) + "#tabs-1" %></li>
 						<li><%= link_to "Mes Tableaux", user_path(current_user) + "#tabs-2" %></li>
 						<li><%= link_to "Parametres", edit_user_path(current_user) %></li>

@@ -10,13 +10,14 @@
       <li class="tile">
 
 
+
                 <!-- La Punaise Elle meme -->
                 <div class="lapunaise">
 
                   <%= link_to (image_tag pun.image_url(:grid).to_s), pun_path(pun) %>
 
                   <div id="pun-like-links">
-                    <div class="top-link" id="punscount-<%= pun.id %>"><a href="#modal-<%= pun.id %>"><%= Pun.where("original_punaise_id = ?", pun.original_punaise_id).count + 1 %> <%= image_tag "icon/punaise2.png" %></a></div>
+                    <div class="top-link" id="punscount-<%= pun.id %>"><a id="modal-<%= pun.id %>" href="#"><%= Pun.where("original_punaise_id = ?", pun.original_punaise_id).count + 1 %> <%= image_tag "icon/punaise2.png" %></a></div>
                     <div class="top-link" id="likescount-<%= pun.id %>"> <%= link_to pun.likers(User).count.to_s, toggle_like_path(pun), :remote => true %><%= link_to (image_tag "icon/love2.png"), toggle_like_path(pun), :remote => true %></div>
                   </div>
 
@@ -100,7 +101,7 @@
 
 
               
-    <aside id="modal-<%= pun.id %>" class="modal">
+    <div id="modal-<%= pun.id %>" class="modal">
         <div>
 
             <div id="modal-share-pun">
@@ -183,7 +184,6 @@
 
                     <%= f.hidden_field :websource, :value => pun.websource %>
                     <%= f.hidden_field :link, :value => pun.websource %>
-                    <%= f.hidden_field :title, :value => pun.title %>
                     <%= f.hidden_field :category_id, :value => pun.category_id %>
 
                     <div id="actions">
@@ -199,7 +199,7 @@
                     </div>
             <a href="#close" title="Close">Close</a>
         </div>
-    </aside> 
+    </div> 
 
       </li>
 

@@ -124,9 +124,6 @@
                           <div class="right">
                             
                             <%= form_for(Pun.new(params[:pun])) do |f| %>
-
-                              <div class="label" ><%= f.label :title %></div>
-                                <%= f.text_field :title, :value => pun.title %>
                               
 
                               <div class="label" ><%= f.label :board_id %></div>

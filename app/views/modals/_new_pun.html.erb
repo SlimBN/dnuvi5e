@@ -1,58 +1,120 @@
-<aside id="modal-new-pun" class="modal">
+<div id="modal-new-pun" class="modal">
     <div>
 
-
-        	<div id="new-punaise-modal">
+        		<div class="header">
+        			Nouvelle Punsaise
+        		</div>
 
           		<%= form_for(Pun.new(params[:pun])) do |f| %>
-        		
-				<div class="left">
-					
-					<div class="field">
-				    	Selectionnez votre punaise<br />
-				    	<%= f.file_field :image %>
-				 	</div>
 
-				 	<div class="field">
-				    	<%= f.text_field :title, :placeholder => "Titre" %>
-		  			</div>
+          		<div class="formsblock">
+          			<div class="field">
+          				<div class="label">
+          					Choisir Une Image:
+          				</div>
 
-				  	<div class="field">
-						<%= f.text_field :link, :placeholder => "Lien vers..." %>
-					</div>
-
-				  	<div class="field">
-				    	<%= f.text_area :description, :placeholder => "Description..." %>
-				  	</div>
-
-				</div>
-
-				<div class="right">
-					
-					<div class="field">
-				    	Dans :<br />
-				    	<select id="pun_board_id" name="pun[board_id]">
-				      	<% Board.where("user_id = ?", current_user.id).each do |board|  %>
-				        	<option value="<%= board.id %>"><%= board.name %> </option>
-				      	<% end %>
-				    	</select>
-				  	</div>
-
-				  	<div class="button">
-				  		<%= link_to "Ajouter un Tableau", "#modal-new-board" %>
-				  	</div>
-
-				  	<div class="field">
-				    	Dans quelle categories s'intègre votre punaises<br />
-				    	<select id="pun_board_id" name="pun[category_id]">
-				      	<% Category.order("name ASC").each do |category|  %>
-				        	<option value="<%= category.id %>"><%= category.name %> </option>
-				      	<% end %>
-				    	</select>
-				  	</div>
+          				<div class="input">
+          					<%= f.file_field :image %>
+          				</div>
+          			</div>
 
 
-				</div>
+          			<div class="field">
+          				<div class="label">
+          					Source:
+          				</div>
+
+          				<div class="input">
+          					<%= f.text_field :link, :placeholder => "Lien vers..." %>
+          				</div>
+          			</div>
+
+
+
+          			<div class="field">
+          				<div class="label">
+          					Description:
+          				</div>
+
+          				<div class="input">
+          					<%= f.text_area :description, :placeholder => "Description..." %>
+          				</div>
+          			</div>
+
+
+
+          			<div class="field">
+          				<div class="label">
+          					Sur Quel Tableau Va Votre Punaise:
+          				</div>
+
+          				<div class="input">
+          					<select id="pun_board_id" name="pun[board_id]">
+						      	<% Board.where("user_id = ?", current_user.id).each do |board|  %>
+						        	<option value="<%= board.id %>"><%= board.name %> </option>
+						      	<% end %>
+						    </select>
+          				</div>
+          			</div>
+
+
+
+          			<div class="fieldbutton">
+          				<div class="label">
+          					
+          				</div>
+
+          				<div class="input">
+          					<%= link_to "Ajouter un Tableau", "#modal-new-board", :rel => "modal:open" %>
+          				</div>
+          			</div>
+
+
+          			<div class="field">
+          				<div class="label">
+          					Categorie:
+          				</div>
+
+          				<div class="input">
+					    	<select id="pun_board_id" name="pun[category_id]">
+						      	<% Category.order("name ASC").each do |category|  %>
+						        	<option value="<%= category.id %>"><%= category.name %> </option>
+						      	<% end %>
+					    	</select>
+          				</div>
+          			</div>
+
+
+
+                    <div class="field">
+                        <div class="label">
+                            Est à Vendre:
+                        </div>
+
+                        <div class="input">
+                            <%= f.text_field :price, :placeholder => "Laisser vide sinon..." %>
+                        </div>
+                    </div>
+
+
+                    <div class="field">
+                        <div class="label">
+                            Quel Devise:
+                        </div>
+
+                        <div class="input">
+                            <select id="pun_currency_id" name="pun[currency_id]" value="1">
+                                <% Currency.order("name ASC").each do |currency|  %>
+                                    <option value="<%= currency.id %>"><%= currency.name %> </option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+          		</div>
+
 
 			    <%= f.hidden_field :user_id, :value => current_user.id %>
 			    <%= f.hidden_field :original_user_id, :value => current_user.id %>
@@ -63,9 +125,6 @@
 
 	            <% end %> 
 
-        	</div>
 
-
-        <a href="#close" title="Close">Close</a>
         </div>
-</aside>
+</div>

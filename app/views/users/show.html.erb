@@ -12,16 +12,14 @@
     </div>
 
     <div class="downlinks">
-    <% if user_signed_in? %>
-      <% if (@user.id == current_user.id) %>
+    <% if user_signed_in? and (@user.id == current_user.id) %>
       <%= link_to (image_tag "icons/edit.png"), edit_user_path(current_user) %>
-      <% end %>
     <% end %>
     </div>
   </div>
 
   <div class="right">
-    <% unless user_signed_in? and (@user.id == current_user.id) %>
+    <% if user_signed_in? and (@user.id != current_user.id) %>
     <%= form_for "/users/follow/" do |f| %>
       <%= submit_tag (current_user.follows?(@user) ? "Following" : "Not following"), :class => "button" %>
     <% end %>

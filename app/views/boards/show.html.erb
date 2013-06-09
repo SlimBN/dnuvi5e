@@ -16,7 +16,9 @@
     </div>
 
     <div class="two">
-      <%= link_to "Modifier le Tableau", "#modal-edit-"+@board.name %>
+      <% if user_signed_in? and (@board.user_id == current_user.id) %>
+        <%= link_to "Modifier le Tableau", "#modal-edit-"+@board.name %>
+      <% end %>
     </div>
 
     <div class="three">
@@ -24,15 +26,19 @@
       <ul>
         <li><%= Pun.where("board_id = ?", @board.id).count %> Punaises</li>
         <li class="last"><%= @board.followers(User).count %> Abonnés</li>
+
+        <% if user_signed_in? %>
         <li>
 
-          <% if current_user.follows?(@board) %>
+          <% if user_signed_in? and current_user.follows?(@board) %>
             <%= link_to "Se Désabonner", toggle_follow_path(@board) %>
           <% else %>
             <%= link_to "S'abonner", toggle_follow_path(@board) %>
           <% end %>
         
         </li>
+        <% end %>
+        
       </ul>
 
     </div>

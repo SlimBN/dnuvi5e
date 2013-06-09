@@ -1,18 +1,18 @@
 <!-- The punaise title -->
 <div id="header-title">
   
-  <%= render "puns/ajax/pun_title" %>
+  <%= render "puns/ajax/pun_description" %>
 
 </div>
 
-<!-- Description -->
+<!-- Description
 <div id="header-description">
 
   " <%= render "puns/ajax/pun_description" %> "
 
 </div>
 
-
+ -->
 
 <div id="punshow">
 
@@ -34,7 +34,7 @@
 
   <div class="right">
 
-    <% if (@pun.is_product == TRUE) %>
+    <% unless @pun.price.nil? %>
     <div class="product">
       <%= render "puns/punshow_product_price" %>
     </div>

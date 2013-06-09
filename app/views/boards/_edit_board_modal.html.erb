@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <aside id="modal-edit-<%= @board.name %>" class="modal" >
 	<div>
 
@@ -22,3 +23,4 @@
 
     </div>
 </aside>
+<% end %>
