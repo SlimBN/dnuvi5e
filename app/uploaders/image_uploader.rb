@@ -72,7 +72,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :grid do
-    process :resize_to_fit => [235, 10000]
+    process :resize_to_fit => [240, 10000]
   end
 
   version :punshowgrid do

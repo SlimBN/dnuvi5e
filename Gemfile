@@ -10,6 +10,9 @@ gem 'rails-i18n'
 #gem 'sqlite3'
 gem 'pg'
 
+#allege le serveur
+
+
 #Uploader gem
 gem 'carrierwave'
 gem 'rmagick'

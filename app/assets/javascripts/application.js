@@ -18,7 +18,9 @@
 $(function() {
     $( "#sectoreduserdata" ).tabs();
 
-    $(".modal").easyModal();
+    $('#punslist').trigger('refreshWookmark');
+    $('.punshow-grid').trigger('refreshWookmark');
+    $('#userpunslist').trigger('refreshWookmark');
 });
 
 
